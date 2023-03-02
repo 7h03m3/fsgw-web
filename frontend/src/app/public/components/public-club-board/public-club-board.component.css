@@ -1,0 +1,7 @@
+.mat-mdc-list-item-icon {
+  color: rgba(0, 0, 0, 0.54);
+}
+
+mat-list-item:nth-child(n) {
+  height: 3.5em !important;
+}

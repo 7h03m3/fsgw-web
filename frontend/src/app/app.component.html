@@ -1,0 +1,96 @@
+<div class="content  mat-app-background ">
+  <mat-toolbar color="primary">
+    <mat-toolbar-row class="header-bg">
+      <span class="header-bg-spacer"></span>
+      Feldschützengesellschaft Winterthur
+    </mat-toolbar-row>
+    <mat-toolbar-row class="toolbar">
+      <button class="toolbar-buttons" color="primary" disabled mat-flat-button>Home</button>
+
+      <button [matMenuTriggerFor]="clubMenu" class="toolbar-buttons" color="primary" mat-flat-button>Verein</button>
+      <mat-menu #clubMenu="matMenu" style="width:1000px">
+        <button mat-menu-item routerLink="/public/club/about-us">
+          Über uns
+        </button>
+        <button mat-menu-item routerLink="/public/club/shooting-range">
+          Schiessstand
+        </button>
+        <button mat-menu-item routerLink="/public/club/board">
+          Vorstand
+        </button>
+        <button disabled mat-menu-item routerLink="/">
+          Reglemente und Statuten
+        </button>
+
+        <button disabled mat-menu-item routerLink="/">
+          Kontakt
+        </button>
+      </mat-menu>
+
+      <button class="toolbar-buttons" color="primary" disabled mat-flat-button>Resultate</button>
+
+      <button [matMenuTriggerFor]="jsMenu" class="toolbar-buttons" color="primary" mat-flat-button>Jungschützenkurs
+      </button>
+      <mat-menu #jsMenu="matMenu" style="width:1000px">
+        <button mat-menu-item routerLink="/public/js/information">
+          Informationen
+        </button>
+        <button disabled mat-menu-item routerLink="/public/js/events">
+          Termine
+        </button>
+        <button disabled mat-menu-item routerLink="/public/js/registration">
+          Anmeldung
+        </button>
+        <button disabled mat-menu-item routerLink="/public/js/diary">
+          Kurstagebuch
+        </button>
+      </mat-menu>
+
+      <button class="toolbar-buttons" color="primary" disabled mat-flat-button>Veranstaltungen</button>
+
+      <button class="toolbar-buttons" color="primary" disabled mat-flat-button>Downloads</button>
+
+      <button [matMenuTriggerFor]="miscMenu" class="toolbar-buttons" color="primary" mat-flat-button>Diverses</button>
+      <mat-menu #miscMenu="matMenu" style="width:1000px">
+        <button mat-menu-item routerLink="/public/misc/personal-weapon">
+          Abgabe der persönlichen Militärwaffe
+        </button>
+        <button mat-menu-item routerLink="/public/misc/new-weapon-law">
+          Neues Waffengesetz
+        </button>
+      </mat-menu>
+
+      <span class="toolbar-spacer"></span>
+
+      <button mat-icon-button>
+        <mat-icon class="icon-white">login</mat-icon>
+      </button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <!--
+  <h1>Test</h1>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Test card</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>Inhalt
+      <br>
+      <button class="toolbar-buttons" color="primary" mat-flat-button>Primary</button>
+      <button class="toolbar-buttons" color="accent" mat-flat-button>Accent</button>
+      <button class="toolbar-buttons" color="warn" mat-flat-button>Warn</button>
+      <br>
+      <button class="toolbar-buttons" color="primary" mat-button>Primary</button>
+      <button class="toolbar-buttons" color="accent" mat-button>Accent</button>
+      <button class="toolbar-buttons" color="warn" mat-button>Warn</button>
+      <br>
+      <button class="toolbar-buttons" color="primary" mat-stroked-button>Primary</button>
+      <button class="toolbar-buttons" color="accent" mat-stroked-button>Accent</button>
+      <button class="toolbar-buttons" color="warn" mat-stroked-button>Warn</button>
+    </mat-card-content>
+    <mat-card-actions>
+
+    </mat-card-actions>
+  </mat-card>
+  -->
+  <router-outlet></router-outlet>
+</div>

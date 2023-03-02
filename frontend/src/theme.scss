@@ -1,0 +1,19 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$fsgw-primary: mat.define-palette(mat.$red-palette, 500);
+$fsgw-accent: mat.define-palette(mat.$light-blue-palette, 500, A100, A400);
+$fsgw-warn: mat.define-palette(mat.$orange-palette);
+
+$fsgw-theme: mat.define-light-theme((
+  color: (
+    primary: $fsgw-primary,
+    accent: $fsgw-accent,
+    warn: $fsgw-warn,
+  ),
+  typography: mat.define-typography-config(),
+  density: 0,
+));
+
+@include mat.all-component-themes($fsgw-theme);

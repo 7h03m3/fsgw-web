@@ -1,0 +1,29 @@
+.content {
+  height: 100%;
+}
+
+.header-bg {
+  height: 80px;
+  font-size: 28px;
+  font-weight: normal;
+  color: white;
+  background: #da251c url('../assets/images/cropped-fsgw_logo_80.png') left center no-repeat;
+}
+
+.header-bg-spacer {
+  width: 4em;
+}
+
+.toolbar {
+  height: 2.4em;
+}
+
+.toolbar-buttons {
+  margin-right: 0.5em;
+}
+
+.toolbar-spacer {
+  flex: 1 1 auto;
+}
+
+
