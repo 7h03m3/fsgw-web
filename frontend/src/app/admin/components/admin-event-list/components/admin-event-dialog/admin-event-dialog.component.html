@@ -13,7 +13,8 @@
 
     <mat-form-field appearance="outline" class="form-field-block">
       <mat-label>Kategorie</mat-label>
-      <mat-select [(ngModel)]="data.event.categoryId" name="category" required>
+      <mat-select (selectionChange)="onCategoryChange()" [(ngModel)]="data.event.categoryId" name="category"
+                  required>
         <mat-option *ngFor="let category of categoryList" [value]="category.id">
           {{category.name}} ({{category.abbreviation}})
         </mat-option>
@@ -22,7 +23,7 @@
 
     <mat-form-field appearance="outline" class="form-field-block">
       <mat-label>Ort</mat-label>
-      <mat-select [(ngModel)]="data.event.locationId" name="location" required>
+      <mat-select (selectionChange)="onLocationChange()" [(ngModel)]="data.event.locationId" name="location" required>
         <mat-option *ngFor="let location of locationList" [value]="location.id">
           {{location.name}}
         </mat-option>
@@ -44,9 +45,7 @@
         Bitte eine Startzeit angeben.
       </mat-error>
     </mat-form-field>
-
     <br>
-
     <mat-form-field appearance="outline">
       <mat-label>Enddatum</mat-label>
       <input [(ngModel)]="endDate" [matDatepicker]="endPicker" matInput name="end_date">

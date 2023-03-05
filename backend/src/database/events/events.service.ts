@@ -16,6 +16,7 @@ export class EventsService {
   public getAll(): Promise<EventEntity[]> {
     return this.eventRepository.find({
       relations: { category: true, location: true },
+      order: { start: 'DESC' },
     });
   }
 

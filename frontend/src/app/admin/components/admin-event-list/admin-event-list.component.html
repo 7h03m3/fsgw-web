@@ -1,4 +1,12 @@
-<h2>Anlässes</h2>
+<h2>Anlässe</h2>
+<mat-form-field appearance="outline">
+  <mat-label>Kategorie</mat-label>
+  <mat-select (valueChange)="onCategoryChange($event)" [value]="selectedCategory" name="category">
+    <mat-option *ngFor="let category of categoryList" [value]="category.id">
+      {{category.name}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
 <table [dataSource]="dataSource" class="mat-elevation-z1" mat-table matSort>
   <ng-container matColumnDef="date">
     <th *matHeaderCellDef mat-header-cell mat-sort-header="start">Datum</th>
@@ -49,6 +57,8 @@
     </td>
   </ng-container>
 
-  <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+  <tr *matHeaderRowDef="displayedColumns; sticky: true" mat-header-row></tr>
   <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
 </table>
+<mat-paginator [pageSizeOptions]="[10, 25, 100]" [pageSize]="10" aria-label="Select page of events"
+               class="mat-elevation-z1"></mat-paginator>

@@ -7,6 +7,7 @@ import { LocationDto } from '../../../../../shared/dtos/location.dto';
 import { EventCategoryApiService } from '../../../../../api/event-category-api.service';
 import { LocationApiService } from '../../../../../api/location-api.service';
 import { StringHelper } from '../../../../../shared/classes/string-helper';
+import { UserSettingsService } from '../../../../../shared/services/user-settings.service';
 
 export interface AdminEventDialogData {
   event: EventDto;
@@ -32,7 +33,8 @@ export class AdminEventDialogComponent {
     @Inject(MAT_DIALOG_DATA) public data: AdminEventDialogData,
     private eventApi: EventApiService,
     private categoryApi: EventCategoryApiService,
-    private locationApi: LocationApiService
+    private locationApi: LocationApiService,
+    private userSettings: UserSettingsService
   ) {}
 
   public ngOnInit(): void {
@@ -63,6 +65,8 @@ export class AdminEventDialogComponent {
       date.setUTCHours(0, 0, 0, 0);
       this.startDate = date.toISOString();
       this.endDate = date.toISOString();
+      this.data.event.categoryId = this.userSettings.getEventCategory();
+      this.data.event.locationId = this.userSettings.getLocation();
     }
   }
 
@@ -102,5 +106,13 @@ export class AdminEventDialogComponent {
 
   public onStartTimeChange(): void {
     this.endTime = this.startTime;
+  }
+
+  public onCategoryChange(): void {
+    this.userSettings.setEventCategory(this.data.event.categoryId);
+  }
+
+  public onLocationChange(): void {
+    this.userSettings.setLocation(this.data.event.locationId);
   }
 }
