@@ -1,0 +1,27 @@
+<mat-drawer-container class="admin-sidenav-container">
+  <mat-drawer #drawer class="admin-sidenav mat-app-background" id="side" mode="side" opened>
+    <mat-selection-list [hideSingleSelectionIndicator]="true" [multiple]="false">
+      <mat-list-option routerLink="./user-list">
+        <mat-icon matListItemIcon>person</mat-icon>
+        Benutzer
+      </mat-list-option>
+      <mat-list-option routerLink="./event-category-list">
+        <mat-icon matListItemIcon>category</mat-icon>
+        Anlasskategorie
+      </mat-list-option>
+      <mat-list-option routerLink="./location-list">
+        <mat-icon matListItemIcon>place</mat-icon>
+        Standort
+      </mat-list-option>
+      <mat-list-option routerLink="./event-list">
+        <mat-icon matListItemIcon>event</mat-icon>
+        Anlässe
+      </mat-list-option>
+    </mat-selection-list>
+  </mat-drawer>
+  <mat-drawer-content class="mat-app-background">
+    <div class="admin-content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>

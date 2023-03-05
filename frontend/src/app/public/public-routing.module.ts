@@ -8,6 +8,7 @@ import { PublicClubAboutUsComponent } from './components/public-club-about-us/pu
 import { PublicClubShootingRangeComponent } from './components/public-club-shooting-range/public-club-shooting-range.component';
 import { PublicClubBoardComponent } from './components/public-club-board/public-club-board.component';
 import { PublicJsInformationComponent } from './components/public-js-information/public-js-information.component';
+import { PublicEventListComponent } from './components/public-event-list/public-event-list.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,10 @@ const routes: Routes = [
       {
         path: 'welcome',
         component: PublicWelcomeComponent,
+      },
+      {
+        path: 'event-list',
+        component: PublicEventListComponent,
       },
       {
         path: 'club/about-us',

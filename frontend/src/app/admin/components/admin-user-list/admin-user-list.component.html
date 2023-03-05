@@ -1,0 +1,56 @@
+<h2>Benutzerliste</h2>
+<table [dataSource]="dataSource" class="mat-elevation-z1" mat-table>
+  <ng-container matColumnDef="id">
+    <th *matHeaderCellDef mat-header-cell>ID</th>
+    <td *matCellDef="let element" mat-cell> {{element.id}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="username">
+    <th *matHeaderCellDef mat-header-cell>Benutzername</th>
+    <td *matCellDef="let element" mat-cell> {{element.userName}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="firstname">
+    <th *matHeaderCellDef mat-header-cell>Vorname</th>
+    <td *matCellDef="let element" mat-cell> {{element.firstName}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="lastname">
+    <th *matHeaderCellDef mat-header-cell>Nachname</th>
+    <td *matCellDef="let element" mat-cell> {{element.lastName}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="role">
+    <th *matHeaderCellDef mat-header-cell>Rollen</th>
+    <td *matCellDef="let element" mat-cell> {{getRoleText(element)}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="action">
+    <th *matHeaderCellDef mat-header-cell>
+          <span>
+            Aktion
+          </span>
+      <span class="header-span">
+            <mat-button-toggle-group #generalGroup="matButtonToggleGroup">
+              <mat-button-toggle (click)="createUser()" matTooltip="Erstellen">
+                <mat-icon color="accent" inline="true">add</mat-icon>
+              </mat-button-toggle>
+            </mat-button-toggle-group>
+          </span>
+    </th>
+    <td *matCellDef="let element" class="align-right" mat-cell>
+      <mat-button-toggle-group #elementGroup="matButtonToggleGroup">
+        <mat-button-toggle (click)="editUser(element)" matTooltip="Benutzer editieren">
+          <mat-icon class="list-action-icon" color="accent" inline="true">edit</mat-icon>
+        </mat-button-toggle>
+        <mat-button-toggle (click)="deleteUser(element)" matTooltip="Benutzer löschen">
+          <mat-icon class="list-action-icon" color="accent" inline="true">delete</mat-icon>
+        </mat-button-toggle>
+      </mat-button-toggle-group>
+    </td>
+  </ng-container>
+
+  <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+  <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+</table>
+

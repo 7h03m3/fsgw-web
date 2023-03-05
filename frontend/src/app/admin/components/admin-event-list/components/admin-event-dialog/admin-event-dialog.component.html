@@ -1,0 +1,79 @@
+<mat-dialog-content class="mat-typography">
+  <form #eventForm="ngForm" (ngSubmit)="onSubmit()">
+    <h3 *ngIf="data.event.id == 0">Anlass erstellen</h3>
+    <h3 *ngIf="data.event.id != 0">Anlass editieren</h3>
+
+    <mat-form-field appearance="outline" class="form-field-block">
+      <mat-label>Titel</mat-label>
+      <input [(ngModel)]="data.event.title" matInput name="titel" required>
+      <mat-error>
+        Bitte einen Titel angeben.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-field-block">
+      <mat-label>Kategorie</mat-label>
+      <mat-select [(ngModel)]="data.event.categoryId" name="category" required>
+        <mat-option *ngFor="let category of categoryList" [value]="category.id">
+          {{category.name}} ({{category.abbreviation}})
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-field-block">
+      <mat-label>Ort</mat-label>
+      <mat-select [(ngModel)]="data.event.locationId" name="location" required>
+        <mat-option *ngFor="let location of locationList" [value]="location.id">
+          {{location.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Startdatum</mat-label>
+      <input (dateChange)="onStartDateChange()" [(ngModel)]="startDate" [matDatepicker]="startPicker" matInput
+             name="start_date">
+      <mat-datepicker-toggle [for]="startPicker" matIconSuffix></mat-datepicker-toggle>
+      <mat-datepicker #startPicker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Startzeit</mat-label>
+      <input (change)="onStartTimeChange()" [(ngModel)]="startTime" matInput name="start_time" required type="Time">
+      <mat-error>
+        Bitte eine Startzeit angeben.
+      </mat-error>
+    </mat-form-field>
+
+    <br>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Enddatum</mat-label>
+      <input [(ngModel)]="endDate" [matDatepicker]="endPicker" matInput name="end_date">
+      <mat-datepicker-toggle [for]="endPicker" matIconSuffix></mat-datepicker-toggle>
+      <mat-datepicker #endPicker></mat-datepicker>
+    </mat-form-field>
+
+
+    <mat-form-field appearance="outline">
+      <mat-label>Endzeit</mat-label>
+      <input [(ngModel)]="endTime" matInput name="end_time" required type="Time">
+      <mat-error>
+        Bitte eine Endzeit angeben.
+      </mat-error>
+    </mat-form-field>
+
+    <section align="left">
+      <mat-checkbox [(ngModel)]="data.event.public" name="public">Öffentlich sichtbar</mat-checkbox>
+    </section>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button (click)="onSubmit()" [disabled]="(!eventForm.form.valid || !isFormValid() || submitButtonDisable)"
+          color="accent"
+          mat-raised-button>
+    Speichern
+  </button>
+  <span class="spacer"></span>
+  <button (click)="onCancel()" color="accent" mat-button>Abbrechen</button>
+</mat-dialog-actions>

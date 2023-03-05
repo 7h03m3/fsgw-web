@@ -1,0 +1,44 @@
+version: '3.5'
+
+services:
+  fsgw-web-frontend:
+    build: ../../frontend
+    image: fsgw-frontend
+    restart: always
+    networks:
+      - proxynet
+      
+  fsgw-web-backend:
+    build: ../../backend
+    image: fsgw-backend
+    restart: always
+    environment:
+      PORT: 3000
+      DATABASE_HOST: fsgw-web-mysql-db
+      DATABASE_PORT: 3306
+      DATABASE_USER: admin
+      DATABASE_PASSWORD: 2beer4me@fsgw
+      DATABASE_NAME: fsgw-web
+    links: 
+      - fsgw-web-mysql-db
+    depends_on:
+      - fsgw-web-mysql-db
+    networks:
+      - proxynet
+      
+  fsgw-web-mysql-db:
+    image: mysql:8.0.32
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 2beer4me@fsgwRoot
+      MYSQL_DATABASE: fsgw-web
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: 2beer4me@fsgw
+    volumes:
+      - ../../data/db-data:/var/lib/mysql
+    networks:
+      - proxynet
+      
+networks:
+  proxynet:
+    name: webnet

@@ -1,0 +1,32 @@
+<mat-dialog-content class="mat-typography">
+  <form #categoryForm="ngForm" (ngSubmit)="onSubmit()">
+    <h3 *ngIf="data.category.id != 0">Anlasskategorie editieren</h3>
+    <h3 *ngIf="data.category.id == 0">Anlasskategorie erstellen</h3>
+    <mat-error *ngIf="!formValid">
+      Bitte alle Daten eingeben.
+    </mat-error>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <input [(ngModel)]="data.category.name" matInput name="name" placeholder="Name"
+             required>
+      <mat-error>
+        Bitte einen Namen angeben.
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline" class="full-width">
+      <input [(ngModel)]="data.category.abbreviation" matInput name="abbreviation" placeholder="Abkürzung" required>
+      <mat-error>
+        Bitte eine Abkürzung angeben.
+      </mat-error>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button (click)="onSubmit()" [disabled]="(!categoryForm.form.valid || submitButtonDisable)" color="accent"
+          mat-raised-button>
+    Speichern
+  </button>
+  <span class="spacer"></span>
+  <button (click)="onCancel()" color="accent" mat-button>Abbrechen</button>
+</mat-dialog-actions>

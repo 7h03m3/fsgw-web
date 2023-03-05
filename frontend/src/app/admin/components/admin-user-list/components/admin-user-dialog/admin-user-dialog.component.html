@@ -1,0 +1,62 @@
+<mat-dialog-content class="mat-typography">
+  <form #userForm="ngForm" (ngSubmit)="onSubmit()">
+    <h3 *ngIf="data.user.id != 0">Benutzer editieren</h3>
+    <h3 *ngIf="data.user.id == 0">Benutzer erstellen</h3>
+    <mat-error *ngIf="!formValid">
+      Bitte alle Daten eingeben.
+    </mat-error>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <input [(ngModel)]="data.user.userName" matInput name="userName" placeholder="Benutzername"
+             required>
+      <mat-error>
+        Bitte einen Benutzername angeben.
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline">
+      <input [(ngModel)]="data.user.firstName" matInput name="firstName" placeholder="Vorname" required>
+      <mat-error>
+        Bitte einen Vornamen angeben.
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <input [(ngModel)]="data.user.lastName" matInput name="lastName" placeholder="Nachname" required>
+      <mat-error>
+        Bitte einen Nachnamen angeben.
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline" class="full-width">
+      <input [(ngModel)]="data.user.password" [required]="passwordRequired" [type]="hidePassword ? 'password' : 'text'"
+             matInput
+             name="password" placeholder="Passwort">
+      <button (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hidePassword" mat-icon-button
+              matSuffix>
+        <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+      <mat-error>
+        Bitte ein Passwort angeben.
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <mat-selection-list #roleList (selectionChange)="onChange($event)" name="userRole">
+      <mat-list-option *ngFor="let userRole of userRoles" [disabled]="isOptionDisabled(userRole)"
+                       [selected]="isRoleSelected(userRole)" [value]="userRole">
+        {{userRole}}
+      </mat-list-option>
+    </mat-selection-list>
+
+
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button (click)="onSubmit()" [disabled]="(!userForm.form.valid || submitButtonDisable || data.user.roles.length == 0)"
+          color="accent" mat-raised-button>
+    Speichern
+  </button>
+  <span class="spacer"></span>
+  <button (click)="onCancel()" color="accent" mat-button>Abbrechen</button>
+</mat-dialog-actions>
+

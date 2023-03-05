@@ -1,0 +1,46 @@
+<mat-dialog-content class="mat-typography">
+  <form #categoryForm="ngForm" (ngSubmit)="onSubmit()">
+    <h3 *ngIf="data.location.id != 0">Standort editieren</h3>
+    <h3 *ngIf="data.location.id == 0">Standort erstellen</h3>
+    <mat-error *ngIf="!formValid">
+      Bitte alle Daten eingeben.
+    </mat-error>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <input [(ngModel)]="data.location.name" matInput name="name" placeholder="Name"
+             required>
+      <mat-error>
+        Bitte einen Namen angeben.
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline" class="full-width">
+      <input [(ngModel)]="data.location.street" matInput name="street" placeholder="Strasse" required>
+      <mat-error>
+        Bitte eine Strasse angeben.
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline" class="full-width">
+      <input [(ngModel)]="data.location.zip" matInput name="zip" placeholder="PLZ" required>
+      <mat-error>
+        Bitte eine PLZ angeben.
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline" class="full-width">
+      <input [(ngModel)]="data.location.location" matInput name="location" placeholder="Ort" required>
+      <mat-error>
+        Bitte einen Ort angeben.
+      </mat-error>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button (click)="onSubmit()" [disabled]="(!categoryForm.form.valid || submitButtonDisable)" color="accent"
+          mat-raised-button>
+    Speichern
+  </button>
+  <span class="spacer"></span>
+  <button (click)="onCancel()" color="accent" mat-button>Abbrechen</button>
+</mat-dialog-actions>

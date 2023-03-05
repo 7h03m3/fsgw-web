@@ -1,10 +1,10 @@
-<div class="content  mat-app-background ">
-  <mat-toolbar color="primary">
+<div class="content mat-app-background">
+  <mat-toolbar class="toolbar" color="primary">
     <mat-toolbar-row class="header-bg">
       <span class="header-bg-spacer"></span>
       Feldschützengesellschaft Winterthur
     </mat-toolbar-row>
-    <mat-toolbar-row class="toolbar">
+    <mat-toolbar-row class="toolbar-row">
       <button class="toolbar-buttons" color="primary" disabled mat-flat-button>Home</button>
 
       <button [matMenuTriggerFor]="clubMenu" class="toolbar-buttons" color="primary" mat-flat-button>Verein</button>
@@ -35,7 +35,7 @@
         <button mat-menu-item routerLink="/public/js/information">
           Informationen
         </button>
-        <button disabled mat-menu-item routerLink="/public/js/events">
+        <button (click)="onEventSelect('JS')" mat-menu-item>
           Termine
         </button>
         <button disabled mat-menu-item routerLink="/public/js/registration">
@@ -46,7 +46,29 @@
         </button>
       </mat-menu>
 
-      <button class="toolbar-buttons" color="primary" disabled mat-flat-button>Veranstaltungen</button>
+      <button [matMenuTriggerFor]="eventMenu" class="toolbar-buttons" color="primary" mat-flat-button>Veranstaltungen
+      </button>
+      <mat-menu #eventMenu="matMenu" style="width:1000px">
+        <button (click)="onEventSelect('')" mat-menu-item>
+          Alle
+        </button>
+        <button (click)="onEventSelect('BU')" mat-menu-item>
+          Bundesübung / Obli
+        </button>
+        <button (click)="onEventSelect('FS')" mat-menu-item>
+          Feldschiessen
+        </button>
+        <button (click)="onEventSelect('JS')" mat-menu-item>
+          Jungschützenkurs
+        </button>
+        <button (click)="onEventSelect('JM')" mat-menu-item>
+          Jahresmeisterschaft
+        </button>
+        <button (click)="onEventSelect('FU')" mat-menu-item>
+          Freie Übungen
+        </button>
+      </mat-menu>
+
 
       <button class="toolbar-buttons" color="primary" disabled mat-flat-button>Downloads</button>
 
@@ -62,35 +84,34 @@
 
       <span class="toolbar-spacer"></span>
 
-      <button mat-icon-button>
+      <button *ngIf="authService.isAdmin()" mat-icon-button matTooltip="Admin" routerLink="/admin">
+        <mat-icon color="accent">admin_panel_settings</mat-icon>
+      </button>
+
+      <button *ngIf="!authService.isLoggedIn()" mat-icon-button routerLink="/user/login">
         <mat-icon class="icon-white">login</mat-icon>
       </button>
+
+      <p *ngIf="authService.isLoggedIn() == true">
+        <button [matMenuTriggerFor]="menu" mat-icon-button>
+          <mat-icon>person</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button disabled mat-menu-item>
+            <span>Rolle: {{authService.getUserRoles().toString()}}</span>
+          </button>
+          <button disabled mat-menu-item routerLink="user/password-change">
+            <mat-icon>password</mat-icon>
+            <span>Passwort ändern</span>
+          </button>
+          <button (click)="authService.logout()" mat-menu-item matTooltip="Logout">
+            <mat-icon>logout</mat-icon>
+            <span>Logout</span>
+          </button>
+        </mat-menu>
+      </p>
     </mat-toolbar-row>
   </mat-toolbar>
-  <!--
-  <h1>Test</h1>
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title>Test card</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>Inhalt
-      <br>
-      <button class="toolbar-buttons" color="primary" mat-flat-button>Primary</button>
-      <button class="toolbar-buttons" color="accent" mat-flat-button>Accent</button>
-      <button class="toolbar-buttons" color="warn" mat-flat-button>Warn</button>
-      <br>
-      <button class="toolbar-buttons" color="primary" mat-button>Primary</button>
-      <button class="toolbar-buttons" color="accent" mat-button>Accent</button>
-      <button class="toolbar-buttons" color="warn" mat-button>Warn</button>
-      <br>
-      <button class="toolbar-buttons" color="primary" mat-stroked-button>Primary</button>
-      <button class="toolbar-buttons" color="accent" mat-stroked-button>Accent</button>
-      <button class="toolbar-buttons" color="warn" mat-stroked-button>Warn</button>
-    </mat-card-content>
-    <mat-card-actions>
 
-    </mat-card-actions>
-  </mat-card>
-  -->
   <router-outlet></router-outlet>
 </div>

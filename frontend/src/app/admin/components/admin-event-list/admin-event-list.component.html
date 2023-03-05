@@ -1,0 +1,54 @@
+<h2>Anlässes</h2>
+<table [dataSource]="dataSource" class="mat-elevation-z1" mat-table matSort>
+  <ng-container matColumnDef="date">
+    <th *matHeaderCellDef mat-header-cell mat-sort-header="start">Datum</th>
+    <td *matCellDef="let element" mat-cell> {{getDayString(element)}}, {{getDateString(element)}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="title">
+    <th *matHeaderCellDef mat-header-cell mat-sort-header="title">Titel</th>
+    <td *matCellDef="let element" mat-cell> {{element.title}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="category">
+    <th *matHeaderCellDef mat-header-cell mat-sort-header="categoryId">Kategorie</th>
+    <td *matCellDef="let element" mat-cell> {{element.category.name}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="location">
+    <th *matHeaderCellDef mat-header-cell mat-sort-header="locationId">Ort</th>
+    <td *matCellDef="let element" mat-cell> {{element.location.name}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="public">
+    <th *matHeaderCellDef mat-header-cell mat-sort-header="public">Öffentlich</th>
+    <td *matCellDef="let element" class="cell-center" mat-cell>
+      <mat-icon *ngIf="element.public">check</mat-icon>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="action">
+    <th *matHeaderCellDef class="align-right" mat-header-cell>
+      <span class="header-span">
+        <mat-button-toggle-group #generalGroup="matButtonToggleGroup">
+          <mat-button-toggle (click)="onCreate()" matTooltip="Erstellen">
+            <mat-icon color="accent" inline="true">add</mat-icon>
+          </mat-button-toggle>
+        </mat-button-toggle-group>
+      </span>
+    </th>
+    <td *matCellDef="let element" class="align-right" mat-cell>
+      <mat-button-toggle-group #elementGroup="matButtonToggleGroup">
+        <mat-button-toggle (click)="onEdit(element)" matTooltip="Editieren">
+          <mat-icon class="list-action-icon" color="accent" inline="true">edit</mat-icon>
+        </mat-button-toggle>
+        <mat-button-toggle (click)="onDelete(element)" matTooltip="Löschen">
+          <mat-icon class="list-action-icon" color="accent" inline="true">delete</mat-icon>
+        </mat-button-toggle>
+      </mat-button-toggle-group>
+    </td>
+  </ng-container>
+
+  <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+  <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+</table>

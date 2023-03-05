@@ -33,6 +33,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { DeleteConfirmDialogComponent } from './components/delete-confirm-dialog/delete-confirm-dialog.component';
 
 const materialModules = [
   FormsModule,
@@ -76,6 +77,6 @@ const materialModules = [
 @NgModule({
   imports: [...materialModules],
   exports: [...materialModules],
-  declarations: [],
+  declarations: [DeleteConfirmDialogComponent],
 })
 export class MaterialModule {}
