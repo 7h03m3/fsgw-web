@@ -1,1 +1,55 @@
-<p>public-welcome works!</p>
+<div class="flex-container">
+  <mat-card>
+    <mat-card-header>
+      <div mat-card-avatar>
+        <mat-icon class="mat-card-avatar-icon" color="accent">school</mat-icon>
+      </div>
+      <div class="title-center">
+        <mat-card-title>Jungschützenkurs</mat-card-title>
+      </div>
+    </mat-card-header>
+    <img alt="Jungschützenkurs" mat-card-image src="../../../../assets/images/jsk-title.jpg">
+    <mat-card-content>
+    </mat-card-content>
+    <mat-card-actions>
+      <button color="accent" mat-button routerLink="/public/js/information">Informationen</button>
+      <span class="spacer"></span>
+      <button (click)="onEventSelect('JS')" color="accent" mat-button>Termine</button>
+    </mat-card-actions>
+  </mat-card>
+
+  <mat-card>
+    <mat-card-header>
+      <div mat-card-avatar>
+        <mat-icon class="mat-card-avatar-icon" color="accent">schedule</mat-icon>
+      </div>
+      <div class="title-center">
+        <mat-card-title>Bundesübung (Obli)</mat-card-title>
+      </div>
+    </mat-card-header>
+    <img alt="Obli" mat-card-image src="../../../../assets/images/obli.jpg">
+    <mat-card-content>
+    </mat-card-content>
+    <mat-card-actions>
+      <button (click)="onEventSelect('BU')" color="accent" mat-button>Termine</button>
+    </mat-card-actions>
+  </mat-card>
+
+  <mat-card>
+    <mat-card-header>
+      <div mat-card-avatar>
+        <mat-icon class="mat-card-avatar-icon" color="accent">schedule</mat-icon>
+      </div>
+      <div class="title-center">
+        <mat-card-title>Feldschiessen</mat-card-title>
+      </div>
+    </mat-card-header>
+    <img alt="Obli" mat-card-image src="../../../../assets/images/feldschiessen.jpg">
+    <mat-card-content>
+    </mat-card-content>
+    <mat-card-actions>
+      <button (click)="onEventSelect('FS')" color="accent" mat-button>Termine</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+

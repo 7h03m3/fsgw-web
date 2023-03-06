@@ -5,7 +5,9 @@
       Feldschützengesellschaft Winterthur
     </mat-toolbar-row>
     <mat-toolbar-row class="toolbar-row">
-      <button class="toolbar-buttons" color="primary" disabled mat-flat-button>Home</button>
+      <button color="primary" mat-icon-button routerLink="/">
+        <mat-icon class="icon-white">home</mat-icon>
+      </button>
 
       <button [matMenuTriggerFor]="clubMenu" class="toolbar-buttons" color="primary" mat-flat-button>Verein</button>
       <mat-menu #clubMenu="matMenu" style="width:1000px">
