@@ -19,6 +19,8 @@ services:
       DATABASE_USER: admin
       DATABASE_PASSWORD: 2beer4me@fsgw
       DATABASE_NAME: fsgw-web
+    volumes:
+      - ../../data/files:/data/files
     links: 
       - fsgw-web-mysql-db
     depends_on:

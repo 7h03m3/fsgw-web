@@ -19,4 +19,12 @@ export class AppComponent {
       this.router.navigate(['/public/event-list']);
     }
   }
+
+  public onResultSelect(year: number | undefined) {
+    if (year) {
+      this.router.navigate(['/public/results', { year: year }]);
+    } else {
+      this.router.navigate(['/public/results']);
+    }
+  }
 }

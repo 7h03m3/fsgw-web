@@ -1,6 +1,12 @@
 export class StringHelper {
   private static localeString = 'de-CH';
 
+  public static getDateTimeString(dateNumber: number): string {
+    return (
+      this.getDateString(dateNumber) + ' ' + this.getTimeString(dateNumber)
+    );
+  }
+
   public static getDateString(dateNumber: number): string {
     const date = new Date(+dateNumber);
     const days = this.addLeadingZero(date.getDate());
@@ -80,6 +86,16 @@ export class StringHelper {
     date.setMonth(Number.parseInt(dateStringArray[1]) - 1);
     date.setFullYear(Number.parseInt(dateStringArray[2]));
     return date.getTime();
+  }
+
+  public static getFileSizeString(size: number): string {
+    if (size > 2 ** 20) {
+      return Math.round(size / 2 ** 20) + ' MB';
+    } else if (size > 2 ** 10) {
+      return Math.round(size / 2 ** 10) + ' kB';
+    } else {
+      return size + ' Byte';
+    }
   }
 
   private static addLeadingZero(inputNumber: number): string {

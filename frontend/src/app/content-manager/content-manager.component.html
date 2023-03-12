@@ -1,0 +1,19 @@
+<mat-drawer-container class="cm-sidenav-container">
+  <mat-drawer #drawer class="cm-sidenav mat-app-background" id="side" mode="side" opened>
+    <mat-selection-list [hideSingleSelectionIndicator]="true" [multiple]="false">
+      <mat-list-option routerLink="./event-list">
+        <mat-icon matListItemIcon>event</mat-icon>
+        Anlässe
+      </mat-list-option>
+      <mat-list-option routerLink="./files">
+        <mat-icon matListItemIcon>description</mat-icon>
+        Dateien
+      </mat-list-option>
+    </mat-selection-list>
+  </mat-drawer>
+  <mat-drawer-content class="mat-app-background">
+    <div class="cm-content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>

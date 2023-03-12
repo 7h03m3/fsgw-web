@@ -1,0 +1,26 @@
+.no-background {
+  background: rgba(0, 0, 0, 0);
+}
+
+.mat-mdc-row {
+  height: auto;
+}
+
+.mat-mdc-header-row {
+  height: auto;
+}
+
+.mat-mdc-header-cell {
+  padding-top: 0.5em;
+  margin: 0;
+}
+
+.mat-mdc-cell {
+  border: none;
+  padding-top: 0.5em;
+}
+
+.download-button {
+  background: rgba(0, 0, 0, 0);
+  height: 2em;
+}

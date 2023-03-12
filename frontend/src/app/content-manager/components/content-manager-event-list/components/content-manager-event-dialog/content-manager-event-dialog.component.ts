@@ -14,11 +14,11 @@ export interface AdminEventDialogData {
 }
 
 @Component({
-  selector: 'app-admin-event-dialog',
-  templateUrl: './admin-event-dialog.component.html',
-  styleUrls: ['./admin-event-dialog.component.css'],
+  selector: 'app-content-manager-event-dialog',
+  templateUrl: './content-manager-event-dialog.component.html',
+  styleUrls: ['./content-manager-event-dialog.component.css'],
 })
-export class AdminEventDialogComponent {
+export class ContentManagerEventDialogComponent {
   public formValid = true;
   public submitButtonDisable = false;
   public startDate = '';
@@ -29,7 +29,7 @@ export class AdminEventDialogComponent {
   public locationList = new Array<LocationDto>();
 
   constructor(
-    public dialogRef: MatDialogRef<AdminEventDialogComponent>,
+    public dialogRef: MatDialogRef<ContentManagerEventDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: AdminEventDialogData,
     private eventApi: EventApiService,
     private categoryApi: EventCategoryApiService,

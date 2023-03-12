@@ -9,11 +9,21 @@ import { AdminEventCategoryListComponent } from './components/admin-event-catego
 import { AdminEventCategoryDialogComponent } from './components/admin-event-category-list/components/admin-event-category-dialog/admin-event-category-dialog.component';
 import { AdminLocationListComponent } from './components/admin-location-list/admin-location-list.component';
 import { AdminLocationDialogComponent } from './components/admin-location-list/compontents/admin-location-dialog/admin-location-dialog.component';
-import { AdminEventListComponent } from './components/admin-event-list/admin-event-list.component';
-import { AdminEventDialogComponent } from './components/admin-event-list/components/admin-event-dialog/admin-event-dialog.component';
+import { AdminFileCategoryListComponent } from './components/admin-file-category-list/admin-file-category-list.component';
+import { AdminFileCategoryDialogComponent } from './components/admin-file-category-list/components/admin-event-category-dialog/admin-file-category-dialog.component';
 
 @NgModule({
-  declarations: [AdminComponent, AdminUserListComponent, AdminUserDialogComponent, AdminEventCategoryListComponent, AdminEventCategoryDialogComponent, AdminLocationListComponent, AdminLocationDialogComponent, AdminEventListComponent, AdminEventDialogComponent],
+  declarations: [
+    AdminComponent,
+    AdminUserListComponent,
+    AdminUserDialogComponent,
+    AdminEventCategoryListComponent,
+    AdminEventCategoryDialogComponent,
+    AdminLocationListComponent,
+    AdminLocationDialogComponent,
+    AdminFileCategoryListComponent,
+    AdminFileCategoryDialogComponent,
+  ],
   imports: [CommonModule, MaterialModule, AdminRoutingModule],
 })
 export class AdminModule {}

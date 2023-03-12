@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { PublicComponent } from './public.component';
-import { MaterialModule } from '../shared/material.module';
 import { PublicRoutingModule } from './public-routing.module';
 import { PublicWelcomeComponent } from './components/public-welcome/public-welcome.component';
 import { PublicMiscNewWeaponLawComponent } from './components/public-misc-new-weapon-law/public-misc-new-weapon-law.component';
@@ -11,6 +9,12 @@ import { PublicClubShootingRangeComponent } from './components/public-club-shoot
 import { PublicClubBoardComponent } from './components/public-club-board/public-club-board.component';
 import { PublicJsInformationComponent } from './components/public-js-information/public-js-information.component';
 import { PublicEventListComponent } from './components/public-event-list/public-event-list.component';
+import { PublicEventListLocationInfoComponent } from './components/public-event-list/components/public-event-list-location-info/public-event-list-location-info.component';
+import { PublicDownloadsComponent } from './components/public-downloads/public-downloads.component';
+import { SharedModule } from '../shared/shared.module';
+import { MaterialModule } from '../shared/material.module';
+import { PublicResultsComponent } from './components/public-results/public-results.component';
+import { PublicClubStatutesComponent } from './components/public-club-statutes/public-club-statutes.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +27,11 @@ import { PublicEventListComponent } from './components/public-event-list/public-
     PublicClubBoardComponent,
     PublicJsInformationComponent,
     PublicEventListComponent,
+    PublicEventListLocationInfoComponent,
+    PublicDownloadsComponent,
+    PublicResultsComponent,
+    PublicClubStatutesComponent,
   ],
-  imports: [CommonModule, MaterialModule, PublicRoutingModule],
+  imports: [SharedModule, MaterialModule, PublicRoutingModule],
 })
 export class PublicModule {}

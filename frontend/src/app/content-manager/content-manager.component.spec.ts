@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AdminEventListComponent } from './admin-event-list.component';
+import { ContentManagerComponent } from './content-manager.component';
 
-describe('AdminEventListComponent', () => {
-  let component: AdminEventListComponent;
-  let fixture: ComponentFixture<AdminEventListComponent>;
+describe('ContentManagerComponent', () => {
+  let component: ContentManagerComponent;
+  let fixture: ComponentFixture<ContentManagerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AdminEventListComponent ]
+      declarations: [ ContentManagerComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(AdminEventListComponent);
+    fixture = TestBed.createComponent(ContentManagerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,0 +1,36 @@
+<mat-dialog-content class="mat-typography">
+  <mat-form-field appearance="outline" class="full-width">
+    <input [(ngModel)]="dto.title" matInput name="title" placeholder="Titel" required>
+    <mat-error>
+      Bitte einen Titel angeben.
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="form-field-block">
+    <mat-label>Kategorie</mat-label>
+    <mat-select [(ngModel)]="dto.categoryId" name="category" required>
+      <mat-option *ngFor="let category of categoryList" [value]="category.id">
+        {{category.name}} ({{category.abbreviation}})
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <input #fileUpload (change)="onFileSelected($event)" class="file-input" type="file">
+  <div *ngIf="dto.filename=='' && !existingFile" class="upload-icon">
+    <button (click)="fileUpload.click()" color="accent" mat-mini-fab matTooltip="Datei auswählen">
+      <mat-icon>upload</mat-icon>
+    </button>
+  </div>
+  <div *ngIf="dto.filename!='' && !existingFile" class="remove-icon">
+    {{dto.filename}}
+    <button (click)="onFileDeselected()" color="accent" mat-icon-button>
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button (click)="onSubmit()" [disabled]="!areDataValid()" color="accent"
+          mat-raised-button>
+    Speichern
+  </button>
+  <span class="spacer"></span>
+  <button (click)="onCancel()" color="accent" mat-button>Abbrechen</button>
+</mat-dialog-actions>

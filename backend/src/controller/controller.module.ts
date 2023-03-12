@@ -9,6 +9,10 @@ import { LocationController } from './location/location.controller';
 import { LocationsModule } from '../database/locations/locations.module';
 import { EventController } from './event/event.controller';
 import { EventsModule } from '../database/events/events.module';
+import { FileController } from './file/file.controller';
+import { FileCategoryController } from './file-category/file-category.controller';
+import { FilesModule } from '../database/files/files.module';
+import { FileCategoriesModule } from '../database/file-categories/file-categories.module';
 
 @Module({
   imports: [
@@ -16,6 +20,8 @@ import { EventsModule } from '../database/events/events.module';
     EventsModule,
     EventCategoriesModule,
     LocationsModule,
+    FilesModule,
+    FileCategoriesModule,
     AuthModule,
     SharedModule,
   ],
@@ -24,6 +30,8 @@ import { EventsModule } from '../database/events/events.module';
     EventCategoryController,
     LocationController,
     EventController,
+    FileController,
+    FileCategoryController,
   ],
 })
 export class ControllerModule {}

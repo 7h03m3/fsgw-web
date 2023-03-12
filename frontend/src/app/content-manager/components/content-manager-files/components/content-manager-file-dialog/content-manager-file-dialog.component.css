@@ -1,0 +1,30 @@
+mat-form-field {
+  display: block;
+  min-width: 20em;
+}
+
+.file-input {
+  display: none;
+}
+
+.remove-icon {
+  display: flex;
+  align-items: center;
+}
+
+.upload-icon {
+  display: flex;
+  justify-content: center;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.half-width {
+  width: 50%;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}

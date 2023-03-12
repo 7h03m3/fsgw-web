@@ -9,6 +9,9 @@ import { PublicClubShootingRangeComponent } from './components/public-club-shoot
 import { PublicClubBoardComponent } from './components/public-club-board/public-club-board.component';
 import { PublicJsInformationComponent } from './components/public-js-information/public-js-information.component';
 import { PublicEventListComponent } from './components/public-event-list/public-event-list.component';
+import { PublicDownloadsComponent } from './components/public-downloads/public-downloads.component';
+import { PublicResultsComponent } from './components/public-results/public-results.component';
+import { PublicClubStatutesComponent } from './components/public-club-statutes/public-club-statutes.component';
 
 const routes: Routes = [
   {
@@ -41,6 +44,14 @@ const routes: Routes = [
         component: PublicClubBoardComponent,
       },
       {
+        path: 'club/statutes',
+        component: PublicClubStatutesComponent,
+      },
+      {
+        path: 'results',
+        component: PublicResultsComponent,
+      },
+      {
         path: 'js/information',
         component: PublicJsInformationComponent,
       },
@@ -51,6 +62,10 @@ const routes: Routes = [
       {
         path: 'misc/personal-weapon',
         component: PublicMiscPersonalWeaponComponent,
+      },
+      {
+        path: 'downloads',
+        component: PublicDownloadsComponent,
       },
     ],
   },

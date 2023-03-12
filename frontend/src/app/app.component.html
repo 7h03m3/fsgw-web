@@ -20,16 +20,24 @@
         <button mat-menu-item routerLink="/public/club/board">
           Vorstand
         </button>
-        <button disabled mat-menu-item routerLink="/">
+        <button mat-menu-item routerLink="/public/club/statutes">
           Reglemente und Statuten
         </button>
-
         <button disabled mat-menu-item routerLink="/">
           Kontakt
         </button>
       </mat-menu>
 
-      <button class="toolbar-buttons" color="primary" disabled mat-flat-button>Resultate</button>
+      <button [matMenuTriggerFor]="resultsMenu" class="toolbar-buttons" color="primary" mat-flat-button>Resultate
+      </button>
+      <mat-menu #resultsMenu="matMenu" style="width:1000px">
+        <button (click)="onResultSelect(2023)" mat-menu-item>
+          Resultate 2023
+        </button>
+        <button (click)="onResultSelect(undefined)" mat-menu-item>
+          Alle Resultate
+        </button>
+      </mat-menu>
 
       <button [matMenuTriggerFor]="jsMenu" class="toolbar-buttons" color="primary" mat-flat-button>Jungschützenkurs
       </button>
@@ -72,7 +80,7 @@
       </mat-menu>
 
 
-      <button class="toolbar-buttons" color="primary" disabled mat-flat-button>Downloads</button>
+      <button class="toolbar-buttons" color="primary" mat-flat-button routerLink="/public/downloads">Downloads</button>
 
       <button [matMenuTriggerFor]="miscMenu" class="toolbar-buttons" color="primary" mat-flat-button>Diverses</button>
       <mat-menu #miscMenu="matMenu" style="width:1000px">
@@ -85,6 +93,11 @@
       </mat-menu>
 
       <span class="toolbar-spacer"></span>
+
+      <button *ngIf="authService.isLoggedIn()" mat-icon-button matTooltip="Content Manager"
+              routerLink="/content-manager">
+        <mat-icon color="accent">post_add</mat-icon>
+      </button>
 
       <button *ngIf="authService.isAdmin()" mat-icon-button matTooltip="Admin" routerLink="/admin">
         <mat-icon color="accent">admin_panel_settings</mat-icon>

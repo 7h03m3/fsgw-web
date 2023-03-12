@@ -30,6 +30,8 @@ export class EventController {
     private readonly locationService: LocationsService,
   ) {}
 
+  @UserRoles(UserRole.Admin, UserRole.ContentManager)
+  @UseGuards(JwtAuthGuard, RoleAuthGuard)
   @Get()
   getAll(): Promise<EventEntity[]> {
     return this.eventService.getAll();
@@ -53,7 +55,7 @@ export class EventController {
     );
   }
 
-  @UserRoles(UserRole.Admin)
+  @UserRoles(UserRole.Admin, UserRole.ContentManager)
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
   @Post()
   async create(@Body() dto: EventDto): Promise<EventEntity> {
@@ -62,7 +64,7 @@ export class EventController {
     return this.eventService.create(dto, category, location);
   }
 
-  @UserRoles(UserRole.Admin)
+  @UserRoles(UserRole.Admin, UserRole.ContentManager)
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
   @Put()
   async update(@Body() dto: EventDto): Promise<any> {
@@ -71,7 +73,7 @@ export class EventController {
     return this.eventService.update(dto, category, location);
   }
 
-  @UserRoles(UserRole.Admin)
+  @UserRoles(UserRole.Admin, UserRole.ContentManager)
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
   @Delete(':id')
   async delete(@Param('id') id: number): Promise<any> {

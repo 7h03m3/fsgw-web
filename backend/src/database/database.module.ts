@@ -11,6 +11,10 @@ import { EventCategoriesModule } from './event-categories/event-categories.modul
 import { EventCategoryEntity } from './event-categories/event-category.entity';
 import { EventEntity } from './events/event.entity';
 import { LocationEntity } from './locations/location.entity';
+import { FileCategoriesModule } from './file-categories/file-categories.module';
+import { FilesModule } from './files/files.module';
+import { FileEntity } from './files/file.entity';
+import { FileCategoryEntity } from './file-categories/file-category.entity';
 
 @Module({
   providers: [DefaultValueService],
@@ -30,6 +34,8 @@ import { LocationEntity } from './locations/location.entity';
           EventEntity,
           EventCategoryEntity,
           LocationEntity,
+          FileEntity,
+          FileCategoryEntity,
         ],
         synchronize: true,
       }),
@@ -40,6 +46,8 @@ import { LocationEntity } from './locations/location.entity';
     EventsModule,
     LocationsModule,
     EventCategoriesModule,
+    FileCategoriesModule,
+    FilesModule,
   ],
 })
 export class DatabaseModule {}

@@ -7,6 +7,8 @@ import { StringHelper } from '../../../shared/classes/string-helper';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { EventCategoryApiService } from '../../../api/event-category-api.service';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { PublicEventListLocationInfoComponent } from './components/public-event-list-location-info/public-event-list-location-info.component';
 
 @Component({
   selector: 'app-public-event-list',
@@ -29,7 +31,8 @@ export class PublicEventListComponent {
   constructor(
     private route: ActivatedRoute,
     private eventApi: EventApiService,
-    private categoryApi: EventCategoryApiService
+    private categoryApi: EventCategoryApiService,
+    private locationInfoBottomSheet: MatBottomSheet
   ) {}
 
   public ngOnInit(): void {
@@ -82,5 +85,13 @@ export class PublicEventListComponent {
 
   public getDayString(event: EventDto): string {
     return StringHelper.getDayOfWeekShort(event.start);
+  }
+
+  public onLocationInfo(event: EventDto) {
+    this.locationInfoBottomSheet.open(PublicEventListLocationInfoComponent, {
+      data: {
+        location: event.location,
+      },
+    });
   }
 }

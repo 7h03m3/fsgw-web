@@ -4,7 +4,7 @@ import { AdminUserListComponent } from './components/admin-user-list/admin-user-
 import { RouterModule, Routes } from '@angular/router';
 import { AdminEventCategoryListComponent } from './components/admin-event-category-list/admin-event-category-list.component';
 import { AdminLocationListComponent } from './components/admin-location-list/admin-location-list.component';
-import { AdminEventListComponent } from './components/admin-event-list/admin-event-list.component';
+import { AdminFileCategoryListComponent } from './components/admin-file-category-list/admin-file-category-list.component';
 
 const routes: Routes = [
   {
@@ -28,8 +28,8 @@ const routes: Routes = [
         component: AdminLocationListComponent,
       },
       {
-        path: 'event-list',
-        component: AdminEventListComponent,
+        path: 'file-category-list',
+        component: AdminFileCategoryListComponent,
       },
     ],
   },

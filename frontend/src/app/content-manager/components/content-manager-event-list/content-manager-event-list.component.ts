@@ -5,7 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { EventApiService } from '../../../api/event-api.service';
 import { DeleteConfirmDialogComponent } from '../../../shared/components/delete-confirm-dialog/delete-confirm-dialog.component';
 import { StringHelper } from '../../../shared/classes/string-helper';
-import { AdminEventDialogComponent } from './components/admin-event-dialog/admin-event-dialog.component';
+import { ContentManagerEventDialogComponent } from './components/content-manager-event-dialog/content-manager-event-dialog.component';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { EventCategoryDto } from '../../../shared/dtos/event-category.dto';
@@ -13,11 +13,11 @@ import { EventCategoryApiService } from '../../../api/event-category-api.service
 import { UserSettingsService } from '../../../shared/services/user-settings.service';
 
 @Component({
-  selector: 'app-admin-event-list',
-  templateUrl: './admin-event-list.component.html',
-  styleUrls: ['./admin-event-list.component.css'],
+  selector: 'app-content-manager-event-list',
+  templateUrl: './content-manager-event-list.component.html',
+  styleUrls: ['./content-manager-event-list.component.css'],
 })
-export class AdminEventListComponent {
+export class ContentManagerEventListComponent {
   public dataSource = new MatTableDataSource<EventDto>();
   public categoryList = new Array<EventCategoryDto>();
   public selectedCategory = 0;
@@ -40,6 +40,8 @@ export class AdminEventListComponent {
   ) {}
 
   public ngOnInit(): void {
+    this.selectedCategory = this.userSettings.getEventCategory();
+
     this.categoryApi.getAll().subscribe((response) => {
       this.categoryList = new Array<EventCategoryDto>();
 
@@ -105,7 +107,7 @@ export class AdminEventListComponent {
   }
 
   private openDialog(event: EventDto) {
-    const dialogRef = this.dialog.open(AdminEventDialogComponent, {
+    const dialogRef = this.dialog.open(ContentManagerEventDialogComponent, {
       data: {
         event: event,
       },

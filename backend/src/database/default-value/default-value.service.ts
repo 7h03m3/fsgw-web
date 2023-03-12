@@ -4,6 +4,7 @@ import { UserEntity } from '../users/user.entity';
 import { UserRole } from '../../shared/enums/user-role.enum';
 import { EventCategoryEntity } from '../event-categories/event-category.entity';
 import { LocationEntity } from '../locations/location.entity';
+import { FileCategoryEntity } from '../file-categories/file-category.entity';
 
 @Injectable()
 export class DefaultValueService {
@@ -39,12 +40,33 @@ export class DefaultValueService {
     await this.addEventCategory('Jahresmeisterschaft', 'JM', repository);
   }
 
+  public async loadDefaultFileCategories(
+    repository: Repository<FileCategoryEntity>,
+  ) {
+    await this.addFileCategory('Diverses', 'DIV', repository);
+    await this.addFileCategory('Statuten', 'STA', repository);
+    await this.addFileCategory('Reglemente', 'REG', repository);
+    await this.addFileCategory('Veranstaltungen', 'VER', repository);
+    await this.addFileCategory('Resultate', 'RES', repository);
+  }
+
   private async addEventCategory(
     name: string,
     abbreviation: string,
     repository: Repository<EventCategoryEntity>,
   ) {
     const entity = new EventCategoryEntity();
+    entity.name = name;
+    entity.abbreviation = abbreviation;
+    await repository.save(entity);
+  }
+
+  private async addFileCategory(
+    name: string,
+    abbreviation: string,
+    repository: Repository<FileCategoryEntity>,
+  ) {
+    const entity = new FileCategoryEntity();
     entity.name = name;
     entity.abbreviation = abbreviation;
     await repository.save(entity);

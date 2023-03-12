@@ -27,6 +27,17 @@ const routes: Routes = [
     loadChildren: () =>
       import('./admin/admin.module').then((m) => m.AdminModule),
   },
+  {
+    path: 'content-manager',
+    canActivate: [RoleGuardService],
+    data: {
+      expectedRole: UserRole.ContentManager,
+    },
+    loadChildren: () =>
+      import('./content-manager/content-manager.module').then(
+        (m) => m.ContentManagerModule
+      ),
+  },
 ];
 
 @NgModule({
