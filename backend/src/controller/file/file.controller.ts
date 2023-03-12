@@ -27,6 +27,7 @@ import { UserRoles } from '../../shared/decorators/user-roles.decorator';
 import { UserRole } from '../../shared/enums/user-role.enum';
 import { JwtAuthGuard } from '../../auth/guards/jwt-auth/jwt-auth.guard';
 import { RoleAuthGuard } from '../../auth/guards/role-auth/role-auth.guard';
+import { FileHelper } from '../../shared/classes/file-helper.classes';
 
 @Controller('file/')
 export class FileController {
@@ -89,6 +90,8 @@ export class FileController {
   ): Promise<FileEntity> {
     const dto: FileDto = this.getDto(body);
 
+    dto.filename = FileHelper.getFilename(dto.filename);
+
     const fileEntity = await this.fileService.getByFilename(dto.filename);
     if (fileEntity != null) {
       const errorMessage = 'file des already exist';
@@ -99,11 +102,7 @@ export class FileController {
     const entity = await this.fileService.create(dto, category);
 
     const writeFile = promisify(fs.writeFile);
-    await writeFile(
-      this.fileDirectory + file.originalname,
-      file.buffer,
-      'utf8',
-    );
+    await writeFile(this.fileDirectory + dto.filename, file.buffer, 'utf8');
 
     return entity;
   }

@@ -6,6 +6,7 @@ import { FileDto } from '../../../../../shared/dtos/file.dto';
 import { catchError, EMPTY } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FileCategoryDto } from '../../../../../shared/dtos/file-category.dto';
+import { FileHelper } from '../../../../../shared/classes/file-helper';
 
 export interface AdminFileDialogData {
   file: FileDto;
@@ -60,10 +61,13 @@ export class ContentManagerFileDialogComponent {
     let fileList: FileList | null = element.files;
     if (fileList) {
       const file = fileList[0];
-      this.fileApi.getByFilename(file.name).subscribe((response) => {
+
+      const filename = FileHelper.getFilename(file.name);
+
+      this.fileApi.getByFilename(filename).subscribe((response) => {
         if (response == null) {
           this.file = file;
-          this.dto.filename = this.file.name;
+          this.dto.filename = filename;
           this.dto.mimetype = this.file.type;
           this.dto.size = this.file.size;
         } else {
