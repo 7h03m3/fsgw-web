@@ -19,12 +19,7 @@
   <ng-container matColumnDef="location">
     <th *matHeaderCellDef mat-header-cell mat-sort-header="locationId">Ort</th>
     <td *matCellDef="let element" mat-cell>
-      <div style="display: flex; align-items: center;">
-        {{element.location.name}}
-        <button (click)="onLocationInfo(element)" mat-icon-button>
-          <mat-icon class="info-location-icon">info</mat-icon>
-        </button>
-      </div>
+      <a (click)="onLocationInfo(element)" class="location-link">{{element.location.name}}</a>
     </td>
   </ng-container>
 

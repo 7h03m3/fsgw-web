@@ -30,6 +30,6 @@ tr.mat-footer-row {
   margin-left: 0.5rem;
 }
 
-.info-location-icon {
-  color: grey;
+.location-link {
+  cursor: pointer;
 }
