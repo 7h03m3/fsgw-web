@@ -26,7 +26,7 @@ export class FileDownloadListComponent implements OnChanges {
   @Input() fileList!: FileDto[];
   @ViewChild(MatPaginator) paginator: any = MatPaginator;
   @ViewChild(MatSort) sort: any = MatSort;
-  private displayPaginatorThreshold = 5;
+  private displayPaginatorThreshold = 10;
 
   constructor(private fileApi: FileApiService) {}
 

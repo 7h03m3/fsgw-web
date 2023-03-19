@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { AuthService } from './auth/auth.service';
 import { Router } from '@angular/router';
+import { WindowService } from './shared/services/window.service';
 
 @Component({
   selector: 'app-root',
@@ -10,21 +11,18 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'FSGW';
 
-  constructor(public authService: AuthService, private router: Router) {}
+  constructor(
+    public authService: AuthService,
+    private router: Router,
+    public windowService: WindowService
+  ) {}
 
-  public onEventSelect(category: string | undefined) {
-    if (category) {
-      this.router.navigate(['/public/event-list', { category: category }]);
-    } else {
-      this.router.navigate(['/public/event-list']);
-    }
+  @HostListener('window:resize', ['$event'])
+  public onWindowResize() {
+    this.windowService.setSize(window.innerWidth, window.innerHeight);
   }
 
-  public onResultSelect(year: number | undefined) {
-    if (year) {
-      this.router.navigate(['/public/results', { year: year }]);
-    } else {
-      this.router.navigate(['/public/results']);
-    }
+  public isFirstToolbarRowVisible() {
+    return !this.windowService.isSmallScreen();
   }
 }
