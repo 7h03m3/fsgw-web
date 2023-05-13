@@ -1,0 +1,14 @@
+<button *ngIf="!hasChildren()" class="toolbar-buttons" color="primary" mat-flat-button
+        routerLink="{{menuEntry.routerLink}}">{{menuEntry.name}}</button>
+
+<div *ngIf="hasChildren()">
+  <button [matMenuTriggerFor]="menu" class="toolbar-buttons" color="primary" mat-flat-button>{{menuEntry.name}}</button>
+
+  <mat-menu #menu="matMenu">
+    <div *ngFor="let subEntry of menuEntry.subs">
+      <button (click)="onMenuClick(subEntry)" mat-menu-item>
+        {{subEntry.name}}
+      </button>
+    </div>
+  </mat-menu>
+</div>

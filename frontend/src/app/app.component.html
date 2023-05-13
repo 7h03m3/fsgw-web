@@ -5,92 +5,13 @@
       Feldschützengesellschaft Winterthur
     </mat-toolbar-row>
     <mat-toolbar-row class="toolbar-row">
-      <button color="primary" mat-icon-button routerLink="/">
-        <mat-icon class="icon-white">home</mat-icon>
+      <button (click)="drawer.toggle()" *ngIf="!isFirstToolbarRowVisible()" color="primary" mat-icon-button>
+        <mat-icon class="icon-white">menu</mat-icon>
       </button>
 
-      <button [matMenuTriggerFor]="clubMenu" class="toolbar-buttons" color="primary" mat-flat-button>Verein</button>
-      <mat-menu #clubMenu="matMenu">
-        <button mat-menu-item routerLink="/public/club/about-us">
-          Über uns
-        </button>
-        <button mat-menu-item routerLink="/public/club/shooting-range">
-          Schiessstand
-        </button>
-        <button mat-menu-item routerLink="/public/club/board">
-          Vorstand
-        </button>
-        <button mat-menu-item routerLink="/public/club/statutes">
-          Reglemente und Statuten
-        </button>
-        <button disabled mat-menu-item routerLink="/">
-          Kontakt
-        </button>
-      </mat-menu>
-
-      <button [matMenuTriggerFor]="resultsMenu" class="toolbar-buttons" color="primary" mat-flat-button>Resultate
-      </button>
-      <mat-menu #resultsMenu="matMenu">
-        <button [routerLink]="['/public/results', { year: 2023 }]" mat-menu-item>
-          Resultate 2023
-        </button>
-        <button [routerLink]="['/public/results']" mat-menu-item>
-          Alle Resultate
-        </button>
-      </mat-menu>
-
-      <button [matMenuTriggerFor]="jsMenu" class="toolbar-buttons" color="primary" mat-flat-button>Jungschützenkurs
-      </button>
-      <mat-menu #jsMenu="matMenu">
-        <button mat-menu-item routerLink="/public/js/information">
-          Informationen
-        </button>
-        <button [routerLink]="['/public/event-list', { category: 'JS' }]" mat-menu-item>
-          Termine
-        </button>
-        <button disabled mat-menu-item routerLink="/public/js/registration">
-          Anmeldung
-        </button>
-        <button disabled mat-menu-item routerLink="/public/js/diary">
-          Kurstagebuch
-        </button>
-      </mat-menu>
-
-      <button [matMenuTriggerFor]="eventMenu" class="toolbar-buttons" color="primary" mat-flat-button>Veranstaltungen
-      </button>
-      <mat-menu #eventMenu="matMenu">
-        <button mat-menu-item routerLink="/public/event-list">
-          Alle
-        </button>
-        <button [routerLink]="['/public/event-list', { category: 'BU' }]" mat-menu-item>
-          Bundesübung / Obli
-        </button>
-        <button [routerLink]="['/public/event-list', { category: 'FS' }]" mat-menu-item>
-          Feldschiessen
-        </button>
-        <button [routerLink]="['/public/event-list', { category: 'JS' }]" mat-menu-item>
-          Jungschützenkurs
-        </button>
-        <button [routerLink]="['/public/event-list', { category: 'JM' }]" mat-menu-item>
-          Jahresmeisterschaft
-        </button>
-        <button [routerLink]="['/public/event-list', { category: 'FU' }]" mat-menu-item>
-          Freie Übungen
-        </button>
-      </mat-menu>
-
-
-      <button class="toolbar-buttons" color="primary" mat-flat-button routerLink="/public/downloads">Downloads</button>
-
-      <button [matMenuTriggerFor]="miscMenu" class="toolbar-buttons" color="primary" mat-flat-button>Diverses</button>
-      <mat-menu #miscMenu="matMenu">
-        <button mat-menu-item routerLink="/public/misc/personal-weapon">
-          Abgabe der persönlichen Militärwaffe
-        </button>
-        <button mat-menu-item routerLink="/public/misc/new-weapon-law">
-          Neues Waffengesetz
-        </button>
-      </mat-menu>
+      <div *ngFor="let entry of menuEntries" [hidden]="!isFirstToolbarRowVisible()">
+        <app-toolbar-menu-button [menuEntry]="entry"></app-toolbar-menu-button>
+      </div>
 
       <span class="toolbar-spacer"></span>
 
@@ -127,6 +48,33 @@
       </p>
     </mat-toolbar-row>
   </mat-toolbar>
+  <mat-drawer-container autosize class="content-container">
 
-  <router-outlet></router-outlet>
+    <mat-drawer #drawer class="sidenav" mode="side">
+      <mat-nav-list>
+        <div *ngFor="let entry of menuEntries">
+          <div *ngIf="entry.subs.length == 0">
+            <mat-list-item (click)="onSidenav(entry)" class="menu-item">
+              {{entry.name}}
+            </mat-list-item>
+          </div>
+          <mat-expansion-panel *ngIf="entry.subs.length != 0" [(expanded)]="entry.expanded"
+                               [class.mat-elevation-z0]="true">
+            <mat-expansion-panel-header (click)="onSidenav(entry)" class="menu-item">
+              {{entry.name}}
+            </mat-expansion-panel-header>
+            <div *ngIf="entry.subs.length != 0">
+              <mat-nav-list *ngFor="let subEntry of entry.subs">
+                <mat-list-item (click)="onSidenav(subEntry)" class="menu-item">
+                  {{subEntry.name}}
+                </mat-list-item>
+              </mat-nav-list>
+            </div>
+          </mat-expansion-panel>
+        </div>
+      </mat-nav-list>
+    </mat-drawer>
+
+    <router-outlet></router-outlet>
+  </mat-drawer-container>
 </div>

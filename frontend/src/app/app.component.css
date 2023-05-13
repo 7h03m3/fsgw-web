@@ -1,5 +1,6 @@
 .content {
   height: 100%;
+  width: 100%;
 }
 
 .header-bg {
@@ -33,4 +34,20 @@
   flex: 1 1 auto;
 }
 
+.content-container {
+  width: 100%;
+  height: 100%;
+}
+
+.sidenav {
+  padding: 0em;
+  min-width: 10em;
+  max-width: 15em;
+}
+
+.menu-item {
+  padding-left: 0.5em;
+  font-size: 12pt;
+  font-weight: normal;
+}
 

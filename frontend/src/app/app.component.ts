@@ -1,7 +1,17 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, ViewChild } from '@angular/core';
 import { AuthService } from './auth/auth.service';
 import { Router } from '@angular/router';
 import { WindowService } from './shared/services/window.service';
+
+export interface SubmenuEntry {
+  name: string;
+  routerLink: string;
+}
+
+export interface MenuEntry extends SubmenuEntry {
+  subs: SubmenuEntry[];
+  expanded: boolean;
+}
 
 @Component({
   selector: 'app-root',
@@ -9,13 +19,103 @@ import { WindowService } from './shared/services/window.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'FSGW';
+  public title = 'FSGW';
+  public menuEntries: Array<MenuEntry> = [
+    {
+      name: 'Home',
+      routerLink: '/',
+      expanded: false,
+      subs: [],
+    },
+    {
+      name: 'Verein',
+      routerLink: '',
+      expanded: false,
+      subs: [
+        { name: 'Über uns', routerLink: '/public/club/about-us' },
+        { name: 'Schiessstand', routerLink: '/public/club/shooting-range' },
+        { name: 'Vorstand', routerLink: '/public/club/board' },
+        {
+          name: 'Reglemente und Statuten',
+          routerLink: '/public/club/statutes',
+        },
+      ],
+    },
+    {
+      name: 'Resultate',
+      routerLink: '',
+      expanded: false,
+      subs: [
+        { name: 'Resultate 2023', routerLink: '/public/results;year=2023' },
+        {
+          name: 'Alle Resultate',
+          routerLink: '/public/results',
+        },
+      ],
+    },
+    {
+      name: 'Jungschützenkurs',
+      routerLink: '',
+      expanded: false,
+      subs: [
+        { name: 'Informationen', routerLink: '/public/js/information' },
+        { name: 'Termine', routerLink: '/public/event-list;category=JS' },
+      ],
+    },
+    {
+      name: 'Veranstaltungen',
+      routerLink: '',
+      expanded: false,
+      subs: [
+        { name: 'Alle', routerLink: '/public/event-list' },
+        {
+          name: 'Bundesübung / Obli',
+          routerLink: '/public/event-list;category=BU',
+        },
+        { name: 'Feldschiessen', routerLink: '/public/event-list;category=FS' },
+        {
+          name: 'Jungschützenkurs',
+          routerLink: '/public/event-list;category=JS',
+        },
+        {
+          name: 'Jahresmeisterschaft',
+          routerLink: '/public/event-list;category=JM',
+        },
+        { name: 'Freie Übungen', routerLink: '/public/event-list;category=FU' },
+      ],
+    },
+    {
+      name: 'Downloads',
+      routerLink: '/public/downloads',
+      expanded: false,
+      subs: [],
+    },
+    {
+      name: 'Diverses',
+      routerLink: '',
+      expanded: false,
+      subs: [
+        {
+          name: 'Abgabe der persönlichen Militärwaffe',
+          routerLink: '/public/misc/personal-weapon',
+        },
+        {
+          name: 'Neues Waffengesetz',
+          routerLink: '/public/misc/new-weapon-law',
+        },
+      ],
+    },
+  ];
+
+  @ViewChild('drawer') drawer: any;
 
   constructor(
     public authService: AuthService,
     private router: Router,
     public windowService: WindowService
   ) {}
+
+  public ngOnInit() {}
 
   @HostListener('window:resize', ['$event'])
   public onWindowResize() {
@@ -24,5 +124,17 @@ export class AppComponent {
 
   public isFirstToolbarRowVisible() {
     return !this.windowService.isSmallScreen();
+  }
+
+  public onSidenav(entry: SubmenuEntry) {
+    if (entry.routerLink == '') {
+      return;
+    }
+    this.router.navigateByUrl(entry.routerLink).then(() => {
+      this.drawer.close();
+      this.menuEntries.forEach((entry) => {
+        entry.expanded = false;
+      });
+    });
   }
 }
