@@ -94,7 +94,7 @@ export class FileController {
 
     const fileEntity = await this.fileService.getByFilename(dto.filename);
     if (fileEntity != null) {
-      const errorMessage = 'file des already exist';
+      const errorMessage = 'file does already exist';
       throw new HttpException(errorMessage, HttpStatus.BAD_REQUEST);
     }
 
@@ -110,7 +110,7 @@ export class FileController {
   @Get(':id')
   async download(
     @Param('id') id: number,
-    @Res() response,
+    @Res() response: any,
     @Request() req: any,
   ): Promise<any> {
     const fileEntity = await this.fileService.getById(id);

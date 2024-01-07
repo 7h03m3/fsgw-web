@@ -1,0 +1,65 @@
+<h2>Kursanmeldungen
+  <button (click)="onCreate()" color="accent" mat-stroked-button>
+    <mat-icon>add</mat-icon>
+    Erstellen
+  </button>
+</h2>
+<app-year-selector-standalone (yearChangeEvent)="onYearChange()"></app-year-selector-standalone>
+<br>
+<table [dataSource]="dataSource" class="mat-elevation-z1" mat-table matSort>
+  <ng-container matColumnDef="date">
+    <th *matHeaderCellDef mat-header-cell mat-sort-header="date">Datum</th>
+    <td *matCellDef="let element" mat-cell> {{element.date | date:'dd.MM.YYYY HH:mm'}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="course">
+    <th *matHeaderCellDef mat-header-cell mat-sort-header="type">Kurse</th>
+    <td *matCellDef="let element" mat-cell> {{element.type}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="firstname">
+    <th *matHeaderCellDef mat-header-cell mat-sort-header="firstname">Vorname</th>
+    <td *matCellDef="let element" mat-cell> {{element.firstname}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="lastname">
+    <th *matHeaderCellDef mat-header-cell mat-sort-header="lastname">Nachname</th>
+    <td *matCellDef="let element" mat-cell> {{element.lastname}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="email">
+    <th *matHeaderCellDef mat-header-cell mat-sort-header="email">E-Mail</th>
+    <td *matCellDef="let element" mat-cell> {{element.email}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="mobile">
+    <th *matHeaderCellDef mat-header-cell mat-sort-header="mobile">Natel</th>
+    <td *matCellDef="let element" mat-cell> {{element.mobile}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="action">
+    <th *matHeaderCellDef class="align-right" mat-header-cell>
+    </th>
+    <td *matCellDef="let element" class="align-right" mat-cell>
+      <mat-button-toggle-group #elementGroup="matButtonToggleGroup">
+        <mat-button-toggle (click)="onInfo(element)" matTooltip="Informationen">
+          <mat-icon class="list-action-icon" color="accent" inline="true">info</mat-icon>
+        </mat-button-toggle>
+        <mat-button-toggle (click)="onDownload(element)" matTooltip="Download">
+          <mat-icon class="list-action-icon" color="accent" inline="true">download</mat-icon>
+        </mat-button-toggle>
+        <mat-button-toggle (click)="onEdit(element)" matTooltip="Editieren">
+          <mat-icon class="list-action-icon" color="accent" inline="true">edit</mat-icon>
+        </mat-button-toggle>
+        <mat-button-toggle (click)="onDelete(element)" matTooltip="Löschen">
+          <mat-icon class="list-action-icon" color="accent" inline="true">delete</mat-icon>
+        </mat-button-toggle>
+      </mat-button-toggle-group>
+    </td>
+  </ng-container>
+
+  <tr *matHeaderRowDef="displayedColumns; sticky: true" mat-header-row></tr>
+  <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+</table>
+<mat-paginator [pageSizeOptions]="[10, 25, 100]" [pageSize]="10" aria-label="Select page of events"
+               class="mat-elevation-z1"></mat-paginator>

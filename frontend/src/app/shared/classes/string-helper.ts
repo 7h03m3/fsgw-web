@@ -1,3 +1,5 @@
+import { NotificationSource } from '../enums/notification-source.enum';
+
 export class StringHelper {
   private static localeString = 'de-CH';
 
@@ -95,6 +97,33 @@ export class StringHelper {
       return Math.round(size / 2 ** 10) + ' kB';
     } else {
       return size + ' Byte';
+    }
+  }
+
+  public static getNotificationTriggerText(
+    sourceList: NotificationSource[]
+  ): string {
+    let returnString = '';
+
+    sourceList.forEach((trigger) => {
+      if (returnString.length != 0) {
+        returnString += ', ';
+      }
+
+      returnString += StringHelper.getNotificationSourceText(trigger);
+    });
+
+    return returnString;
+  }
+
+  public static getNotificationSourceText(source: NotificationSource) {
+    switch (source) {
+      case NotificationSource.CourseRegistration:
+        return 'Kursanmeldungen';
+      case NotificationSource.ContactMessage:
+        return 'Kontakt-Nachrichten';
+      default:
+        return '';
     }
   }
 

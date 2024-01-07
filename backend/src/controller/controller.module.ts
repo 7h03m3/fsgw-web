@@ -13,6 +13,16 @@ import { FileController } from './file/file.controller';
 import { FileCategoryController } from './file-category/file-category.controller';
 import { FilesModule } from '../database/files/files.module';
 import { FileCategoriesModule } from '../database/file-categories/file-categories.module';
+import { RegistrationController } from './registration/registration.controller';
+import { ReportCourseRegistrationModule } from '../reports/course-registration/report-course-registration.module';
+import { RegistrationsModule } from '../database/registrations/registrations.module';
+import { MailModule } from '../mail/mail.module';
+import { ContactMessageController } from './contact-message/contact-message.controller';
+import { ContactMessageModule } from '../database/contact-message/contact-message.module';
+import { NotificationsController } from './notifications/notifications.controller';
+import { NotificationModule } from '../database/notification/notification.module';
+import { SettingsController } from './settings/settings.controller';
+import { SettingsModule } from '../database/settings/settings.module';
 
 @Module({
   imports: [
@@ -24,6 +34,12 @@ import { FileCategoriesModule } from '../database/file-categories/file-categorie
     FileCategoriesModule,
     AuthModule,
     SharedModule,
+    RegistrationsModule,
+    ReportCourseRegistrationModule,
+    MailModule,
+    ContactMessageModule,
+    NotificationModule,
+    SettingsModule,
   ],
   controllers: [
     UserController,
@@ -32,6 +48,10 @@ import { FileCategoriesModule } from '../database/file-categories/file-categorie
     EventController,
     FileController,
     FileCategoryController,
+    RegistrationController,
+    ContactMessageController,
+    NotificationsController,
+    SettingsController,
   ],
 })
 export class ControllerModule {}

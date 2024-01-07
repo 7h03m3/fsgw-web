@@ -1,0 +1,36 @@
+<h2>Einstellungen</h2>
+
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Kontaktformular</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <br>
+    <mat-slide-toggle [(ngModel)]="contactSetting.enable">{{getEnableString(contactSetting)}}</mat-slide-toggle>
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <button (click)="onContactSettingSave()" color="accent" mat-stroked-button>Speichern</button>
+  </mat-card-actions>
+</mat-card>
+<br>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>JS-Kursanmeldung</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <br>
+    <mat-slide-toggle
+      [(ngModel)]="courseRegistrationSetting.enable">{{getEnableString(courseRegistrationSetting)}}
+    </mat-slide-toggle>
+    <div *ngIf="courseRegistrationSetting.enable">
+      <br>
+      <mat-form-field appearance="outline">
+        <mat-hint>Jahr</mat-hint>
+        <input [(ngModel)]="courseRegistrationSetting.parameter" matInput type="text">
+      </mat-form-field>
+    </div>
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <button (click)="onCourseRegistrationSave()" color="accent" mat-stroked-button>Speichern</button>
+  </mat-card-actions>
+</mat-card>

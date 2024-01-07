@@ -15,6 +15,12 @@ import { FileCategoriesModule } from './file-categories/file-categories.module';
 import { FilesModule } from './files/files.module';
 import { FileEntity } from './files/file.entity';
 import { FileCategoryEntity } from './file-categories/file-category.entity';
+import { RegistrationsModule } from './registrations/registrations.module';
+import { RegistrationEntity } from './registrations/registration.entity';
+import { ContactMessageEntity } from './contact-message/contact-message.entity';
+import { NotificationReceiverEntity } from './notification/notification-receiver.entity';
+import { SettingsModule } from './settings/settings.module';
+import { SettingEntity } from './settings/settings.entity';
 
 @Module({
   providers: [DefaultValueService],
@@ -36,6 +42,10 @@ import { FileCategoryEntity } from './file-categories/file-category.entity';
           LocationEntity,
           FileEntity,
           FileCategoryEntity,
+          RegistrationEntity,
+          ContactMessageEntity,
+          NotificationReceiverEntity,
+          SettingEntity,
         ],
         synchronize: true,
       }),
@@ -48,6 +58,8 @@ import { FileCategoryEntity } from './file-categories/file-category.entity';
     EventCategoriesModule,
     FileCategoriesModule,
     FilesModule,
+    RegistrationsModule,
+    SettingsModule,
   ],
 })
 export class DatabaseModule {}

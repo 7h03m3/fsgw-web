@@ -1,0 +1,9 @@
+.info-label {
+  display: table-cell;
+  min-width: 10em;
+}
+
+.info-value {
+  display: table-cell;
+  min-width: 4em;
+}

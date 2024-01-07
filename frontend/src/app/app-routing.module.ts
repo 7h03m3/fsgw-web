@@ -38,6 +38,17 @@ const routes: Routes = [
         (m) => m.ContentManagerModule
       ),
   },
+  {
+    path: 'contact-message',
+    loadChildren: () =>
+      import('./contact-messages/contact-message.module').then(
+        (m) => m.ContactMessageModule
+      ),
+    canActivate: [RoleGuardService],
+    data: {
+      expectedRole: UserRole.ContentManager,
+    },
+  },
 ];
 
 @NgModule({

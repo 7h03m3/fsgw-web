@@ -7,6 +7,7 @@ export class UserSettingsService {
   private readonly userSettingsPrefix = 'userSettings_';
   private readonly eventCategoryKey = this.userSettingsPrefix + 'eventCategory';
   private readonly locationKey = this.userSettingsPrefix + 'location';
+  private readonly currentYearKey = 'currentYear';
 
   constructor() {}
 
@@ -21,6 +22,21 @@ export class UserSettingsService {
     }
 
     return parseInt(value);
+  }
+
+  public getCurrentYear(): number {
+    const yearString = sessionStorage.getItem(this.currentYearKey);
+    if (yearString == null) {
+      const date = new Date(Date.now());
+      this.setCurrentYear(date.getFullYear());
+      return date.getFullYear();
+    }
+
+    return parseInt(yearString);
+  }
+
+  public setCurrentYear(newSelectYear: number) {
+    sessionStorage.setItem(this.currentYearKey, newSelectYear.toString());
   }
 
   public setLocation(locationId: number) {
