@@ -54,7 +54,7 @@ export class FileDownloadListComponent implements OnChanges {
 
   public onDownload(file: FileDto) {
     this.fileApi.download(file).subscribe((response) => {
-      DownloadHelper.downloadPdfFile(response, file);
+      DownloadHelper.downloadPdfFile(response, file.mimetype);
     });
   }
 }

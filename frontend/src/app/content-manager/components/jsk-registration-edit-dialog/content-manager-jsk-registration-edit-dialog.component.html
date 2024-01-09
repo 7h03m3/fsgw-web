@@ -1,0 +1,74 @@
+<h1 mat-dialog-title>Anmeldung {{data.id == 0 ? 'erstellen' : 'bearbeiten'}}</h1>
+
+<mat-dialog-content class="mat-typography">
+  <br>
+
+  <mat-form-field appearance="outline" class="mat-form-field-double">
+    <mat-label>Kurs</mat-label>
+    <mat-select [(ngModel)]="data.type" name="type">
+      <mat-option *ngFor="let type of typeList" [value]="type">
+        {{type}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br>
+  <mat-form-field appearance="outline">
+    <mat-label>Vorname</mat-label>
+    <input [(ngModel)]="data.firstname" matInput type="text">
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Nachname</mat-label>
+    <input [(ngModel)]="data.lastname" matInput type="text">
+  </mat-form-field>
+  <mat-divider />
+  <br>
+  <mat-form-field appearance="outline" class="mat-form-field-double">
+    <mat-label>Strasse</mat-label>
+    <input [(ngModel)]="data.street" matInput type="text">
+  </mat-form-field>
+  <br>
+  <mat-form-field appearance="outline">
+    <mat-label>PLZ</mat-label>
+    <input [(ngModel)]="data.zip" matInput type="number">
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Ort</mat-label>
+    <input [(ngModel)]="data.location" matInput type="text">
+  </mat-form-field>
+  <mat-divider />
+  <br>
+  <mat-form-field appearance="outline">
+    <mat-label>Geburtstag</mat-label>
+    <input [(ngModel)]="birthDate" [matDatepicker]="picker" matInput name="birthDate" readonly>
+    <mat-datepicker-toggle [for]="picker" matIconSuffix></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Nationalität</mat-label>
+    <input [(ngModel)]="data.nationality" matInput type="text">
+  </mat-form-field>
+  <mat-divider />
+  <br>
+  <mat-form-field appearance="outline">
+    <mat-label>E-Mail</mat-label>
+    <input [(ngModel)]="data.email" matInput type="text">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Natel</mat-label>
+    <input [(ngModel)]="data.mobile" matInput type="text">
+  </mat-form-field>
+  <mat-divider />
+  <br>
+  <mat-form-field appearance="outline" class="mat-form-field-double">
+    <mat-label>AHV-Nummer</mat-label>
+    <input [(ngModel)]="data.insuranceNumber" matInput type="text">
+  </mat-form-field>
+
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button (click)="onCancel()" cdkFocusInitial mat-flat-button>Abbrechen</button>
+  <span class="spacer"></span>
+  <button (click)="onSubmit()" [disabled]="!isFormValid()" color="primary" mat-flat-button>Speichern</button>
+</mat-dialog-actions>

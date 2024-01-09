@@ -19,6 +19,12 @@ services:
       DATABASE_USER: admin
       DATABASE_PASSWORD: 2beer4me@fsgw
       DATABASE_NAME: fsgw-web
+      MAIL_HOST: smtp.gmail.com
+      MAIL_PORT: 465
+      MAIL_IGNORE_TLS: "true"
+      MAIL_SECURE: "true"
+      MAIL_USER: fsg.winterthur@gmail.com
+      MAIL_PASSWORD: XXX
     volumes:
       - ../../data/files:/data/files
     links: 

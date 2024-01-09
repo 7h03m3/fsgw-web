@@ -1,0 +1,71 @@
+<div *ngIf="setting.enable">
+  <h2>Anmeldung Jungschützen-/Juniorenkurs {{setting.parameter}}</h2>
+  <mat-card>
+    <mat-card-content>
+      <form (ngSubmit)="onSubmit()" [formGroup]="contactForm">
+        <mat-form-field appearance="outline" class="firstname-form-field">
+          <mat-label>Vorname</mat-label>
+          <input formControlName="firstname" matInput>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="lastname-form-field">
+          <mat-label>Nachname</mat-label>
+          <input formControlName="lastname" matInput>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="common-form-field">
+          <mat-label>E-Mail Adresse</mat-label>
+          <input formControlName="email" matInput>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="common-form-field">
+          <mat-label>Telefonnummer</mat-label>
+          <input formControlName="mobile" matInput placeholder="079 000 00 00">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="common-form-field">
+          <mat-label>Strasse</mat-label>
+          <input formControlName="street" matInput>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="zip-form-field">
+          <mat-label>PLZ</mat-label>
+          <input formControlName="zip" matInput type="number">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="location-form-field">
+          <mat-label>Ort</mat-label>
+          <input formControlName="location" matInput>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="common-form-field">
+          <mat-label>Nationalität</mat-label>
+          <input formControlName="nationality" matInput placeholder="CH">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="common-form-field">
+          <mat-label>AHV-Nummer</mat-label>
+          <input formControlName="insuranceNumber" matInput placeholder="756.0000.0000.00">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="common-form-field">
+          <mat-label>Geburtstag</mat-label>
+          <input (dateChange)="onDateChange($event)" [matDatepicker]="picker" formControlName="birthDate" matInput
+                 name="birthDate" readonly>
+          <mat-datepicker-toggle [for]="picker" matIconSuffix></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-hint *ngIf="courseText.length!= 0">Kurs: {{courseText}}</mat-hint>
+        </mat-form-field>
+        <br>
+        <button [disabled]="contactForm.invalid || submitPressed" color="primary" mat-raised-button type="submit">
+          Abschicken
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<div *ngIf="!setting.enable">
+  <h2>Anmeldung Jungschützen-/Juniorenkurs</h2>
+  Die Anmeldung für den Jungschützen-/Juniorenkurs wurde für dieses Jahr geschlossen.
+</div>

@@ -11,10 +11,14 @@ import { PublicJsInformationComponent } from './components/public-js-information
 import { PublicEventListComponent } from './components/public-event-list/public-event-list.component';
 import { PublicEventListLocationInfoComponent } from './components/public-event-list/components/public-event-list-location-info/public-event-list-location-info.component';
 import { PublicDownloadsComponent } from './components/public-downloads/public-downloads.component';
-import { SharedModule } from '../shared/shared.module';
 import { MaterialModule } from '../shared/material.module';
 import { PublicResultsComponent } from './components/public-results/public-results.component';
 import { PublicClubStatutesComponent } from './components/public-club-statutes/public-club-statutes.component';
+import { SharedModule } from '../shared/shared.module';
+import { PublicJsRegistrationComponent } from './components/public-js-registration/public-js-registration.component';
+import { RecaptchaV3Module } from 'ng-recaptcha';
+import { CommonModule } from '@angular/common';
+import { PublicContactComponent } from './components/public-contact/public-contact.component';
 
 @NgModule({
   declarations: [
@@ -26,12 +30,20 @@ import { PublicClubStatutesComponent } from './components/public-club-statutes/p
     PublicClubShootingRangeComponent,
     PublicClubBoardComponent,
     PublicJsInformationComponent,
+    PublicJsRegistrationComponent,
     PublicEventListComponent,
     PublicEventListLocationInfoComponent,
     PublicDownloadsComponent,
     PublicResultsComponent,
     PublicClubStatutesComponent,
+    PublicContactComponent,
   ],
-  imports: [SharedModule, MaterialModule, PublicRoutingModule],
+  imports: [
+    CommonModule,
+    SharedModule,
+    MaterialModule,
+    PublicRoutingModule,
+    RecaptchaV3Module,
+  ],
 })
 export class PublicModule {}

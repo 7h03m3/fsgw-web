@@ -8,20 +8,28 @@ import { ContentManagerFilesComponent } from './components/content-manager-files
 import { ContentManagerFileDialogComponent } from './components/content-manager-files/components/content-manager-file-dialog/content-manager-file-dialog.component';
 import { CommonModule } from '@angular/common';
 import { ContentManagerComponent } from './content-manager.component';
+import { ContentManagerJskRegistrationListComponent } from './components/jsk-registration-list/content-manager-jsk-registration-list.component';
+import { ContentManagerJskRegistrationEditDialogComponent } from './components/jsk-registration-edit-dialog/content-manager-jsk-registration-edit-dialog.component';
+import { ContentManagerJskRegistrationInfoComponent } from './components/jsk-registration-list/components/jsk-registration-info/content-manager-jsk-registration-info.component';
+import { ContentManagerSettingsComponent } from './components/content-manager-settings/content-manager-settings.component';
 
 @NgModule({
+  imports: [
+    CommonModule,
+    SharedModule,
+    MaterialModule,
+    ContentManagerRoutingModule,
+  ],
   declarations: [
     ContentManagerComponent,
     ContentManagerEventListComponent,
     ContentManagerEventDialogComponent,
     ContentManagerFilesComponent,
     ContentManagerFileDialogComponent,
-  ],
-  imports: [
-    CommonModule,
-    SharedModule,
-    MaterialModule,
-    ContentManagerRoutingModule,
+    ContentManagerJskRegistrationListComponent,
+    ContentManagerJskRegistrationEditDialogComponent,
+    ContentManagerJskRegistrationInfoComponent,
+    ContentManagerSettingsComponent,
   ],
 })
 export class ContentManagerModule {}

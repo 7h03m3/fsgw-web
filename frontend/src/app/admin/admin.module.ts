@@ -11,6 +11,8 @@ import { AdminLocationListComponent } from './components/admin-location-list/adm
 import { AdminLocationDialogComponent } from './components/admin-location-list/compontents/admin-location-dialog/admin-location-dialog.component';
 import { AdminFileCategoryListComponent } from './components/admin-file-category-list/admin-file-category-list.component';
 import { AdminFileCategoryDialogComponent } from './components/admin-file-category-list/components/admin-event-category-dialog/admin-file-category-dialog.component';
+import { AdminNotifierListComponent } from './components/admin-notifier-list/admin-notifier-list.component';
+import { AdminNotifierEditDialogComponent } from './components/admin-notifier-edit-dialog/admin-notifier-edit-dialog.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { AdminFileCategoryDialogComponent } from './components/admin-file-catego
     AdminLocationDialogComponent,
     AdminFileCategoryListComponent,
     AdminFileCategoryDialogComponent,
+    AdminNotifierListComponent,
+    AdminNotifierEditDialogComponent,
   ],
   imports: [CommonModule, MaterialModule, AdminRoutingModule],
 })

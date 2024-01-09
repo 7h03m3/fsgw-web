@@ -1,10 +1,12 @@
 import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { FileDto } from '../dtos/file.dto';
 
 @Injectable({ providedIn: 'root' })
 export class DownloadHelper {
-  public static downloadPdfFile(response: HttpResponse<Blob>, file: FileDto) {
+  public static downloadPdfFile(
+    response: HttpResponse<Blob>,
+    mimetype: string
+  ) {
     const contentDisposition = response.headers.get('Content-Disposition');
     let filename = 'file.pdf';
     if (contentDisposition) {
@@ -12,7 +14,7 @@ export class DownloadHelper {
     }
 
     if (response.body) {
-      const blob = new Blob([response.body], { type: file.mimetype });
+      const blob = new Blob([response.body], { type: mimetype });
       const url = window.URL.createObjectURL(blob);
       const anchor = document.createElement('a');
       anchor.download = filename;

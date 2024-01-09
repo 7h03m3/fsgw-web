@@ -33,6 +33,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatBadgeModule } from '@angular/material/badge';
 
 const materialModules = [
   FormsModule,
@@ -71,6 +72,7 @@ const materialModules = [
   MatRadioModule,
   MatBottomSheetModule,
   MatSlideToggleModule,
+  MatBadgeModule,
 ];
 
 @NgModule({

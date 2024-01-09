@@ -2,6 +2,7 @@ import { Component, HostListener, ViewChild } from '@angular/core';
 import { AuthService } from './auth/auth.service';
 import { Router } from '@angular/router';
 import { WindowService } from './shared/services/window.service';
+import { ContactMessageService } from './shared/services/contact-message.service';
 
 export interface SubmenuEntry {
   name: string;
@@ -39,6 +40,7 @@ export class AppComponent {
           name: 'Reglemente und Statuten',
           routerLink: '/public/club/statutes',
         },
+        { name: 'Kontakt', routerLink: '/public/club/contact' },
       ],
     },
     {
@@ -60,6 +62,7 @@ export class AppComponent {
       subs: [
         { name: 'Informationen', routerLink: '/public/js/information' },
         { name: 'Termine', routerLink: '/public/event-list;category=JS' },
+        { name: 'Anmeldung', routerLink: '/public/js/registration' },
       ],
     },
     {
@@ -112,7 +115,8 @@ export class AppComponent {
   constructor(
     public authService: AuthService,
     private router: Router,
-    public windowService: WindowService
+    public windowService: WindowService,
+    public contactMessageService: ContactMessageService
   ) {}
 
   public ngOnInit() {}

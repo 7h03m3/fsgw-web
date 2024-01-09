@@ -1,0 +1,13 @@
+
+mat-form-field {
+  width: 15em;
+  margin-right: 0.5em;
+}
+
+.mat-form-field-double {
+  width: 30.5em;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}

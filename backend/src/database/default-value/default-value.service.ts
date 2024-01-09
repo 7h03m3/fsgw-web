@@ -5,33 +5,31 @@ import { UserRole } from '../../shared/enums/user-role.enum';
 import { EventCategoryEntity } from '../event-categories/event-category.entity';
 import { LocationEntity } from '../locations/location.entity';
 import { FileCategoryEntity } from '../file-categories/file-category.entity';
+import { SettingEntity } from '../settings/settings.entity';
+import { SettingType } from '../../shared/enums/setting-type.enum';
 
 @Injectable()
 export class DefaultValueService {
+  public async loadDefaultSettings(repository: Repository<SettingEntity>) {
+    await this.addSetting(SettingType.Contact, true, '', repository);
+    await this.addSetting(SettingType.CourseRegistration, true, new Date().getFullYear().toString(), repository);
+  }
+
   public async loadDefaultUsers(repository: Repository<UserEntity>) {
     const entity = new UserEntity();
     entity.userName = 'admin';
     entity.firstName = '';
     entity.lastName = '';
-    entity.password =
-      '$2b$10$2mIynFxnRczL2vBE9msevOnz4XEcRBSnaBfrcy4zsO7edy47Ve/7K';
+    entity.password = '$2b$10$2mIynFxnRczL2vBE9msevOnz4XEcRBSnaBfrcy4zsO7edy47Ve/7K';
     entity.roles = [UserRole.Admin];
     await repository.save(entity);
   }
 
   public async loadDefaultLocations(repository: Repository<LocationEntity>) {
-    await this.addLocation(
-      'Schiessanlage Ohrbühl',
-      'Seenerstrasse 139',
-      '8404',
-      'Winterthur',
-      repository,
-    );
+    await this.addLocation('Schiessanlage Ohrbühl', 'Seenerstrasse 139', '8404', 'Winterthur', repository);
   }
 
-  public async loadDefaultEventCategories(
-    repository: Repository<EventCategoryEntity>,
-  ) {
+  public async loadDefaultEventCategories(repository: Repository<EventCategoryEntity>) {
     await this.addEventCategory('Allgemein', 'Allg', repository);
     await this.addEventCategory('Bundesübung', 'BU', repository);
     await this.addEventCategory('Feldschiessen', 'FS', repository);
@@ -40,9 +38,7 @@ export class DefaultValueService {
     await this.addEventCategory('Jahresmeisterschaft', 'JM', repository);
   }
 
-  public async loadDefaultFileCategories(
-    repository: Repository<FileCategoryEntity>,
-  ) {
+  public async loadDefaultFileCategories(repository: Repository<FileCategoryEntity>) {
     await this.addFileCategory('Diverses', 'DIV', repository);
     await this.addFileCategory('Statuten', 'STA', repository);
     await this.addFileCategory('Reglemente', 'REG', repository);
@@ -50,22 +46,14 @@ export class DefaultValueService {
     await this.addFileCategory('Resultate', 'RES', repository);
   }
 
-  private async addEventCategory(
-    name: string,
-    abbreviation: string,
-    repository: Repository<EventCategoryEntity>,
-  ) {
+  private async addEventCategory(name: string, abbreviation: string, repository: Repository<EventCategoryEntity>) {
     const entity = new EventCategoryEntity();
     entity.name = name;
     entity.abbreviation = abbreviation;
     await repository.save(entity);
   }
 
-  private async addFileCategory(
-    name: string,
-    abbreviation: string,
-    repository: Repository<FileCategoryEntity>,
-  ) {
+  private async addFileCategory(name: string, abbreviation: string, repository: Repository<FileCategoryEntity>) {
     const entity = new FileCategoryEntity();
     entity.name = name;
     entity.abbreviation = abbreviation;
@@ -84,6 +72,19 @@ export class DefaultValueService {
     entity.street = street;
     entity.zip = zip;
     entity.location = location;
+    await repository.save(entity);
+  }
+
+  private async addSetting(
+    type: SettingType,
+    enable: boolean,
+    parameter: string,
+    repository: Repository<SettingEntity>,
+  ) {
+    const entity = new SettingEntity();
+    entity.type = type;
+    entity.enable = enable;
+    entity.parameter = parameter;
     await repository.save(entity);
   }
 }

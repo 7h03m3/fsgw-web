@@ -12,6 +12,8 @@ import { PublicEventListComponent } from './components/public-event-list/public-
 import { PublicDownloadsComponent } from './components/public-downloads/public-downloads.component';
 import { PublicResultsComponent } from './components/public-results/public-results.component';
 import { PublicClubStatutesComponent } from './components/public-club-statutes/public-club-statutes.component';
+import { PublicJsRegistrationComponent } from './components/public-js-registration/public-js-registration.component';
+import { PublicContactComponent } from './components/public-contact/public-contact.component';
 
 const routes: Routes = [
   {
@@ -48,12 +50,20 @@ const routes: Routes = [
         component: PublicClubStatutesComponent,
       },
       {
+        path: 'club/contact',
+        component: PublicContactComponent,
+      },
+      {
         path: 'results',
         component: PublicResultsComponent,
       },
       {
         path: 'js/information',
         component: PublicJsInformationComponent,
+      },
+      {
+        path: 'js/registration',
+        component: PublicJsRegistrationComponent,
       },
       {
         path: 'misc/new-weapon-law',

@@ -59,6 +59,10 @@ export class AuthService {
     return this.haseUserRole(UserRole.Admin);
   }
 
+  public isContentManager(): boolean {
+    return this.haseUserRole(UserRole.ContentManager) || this.isAdmin();
+  }
+
   public haseUserRole(role: UserRole): boolean {
     if (!this.isLoggedIn()) {
       return false;

@@ -11,6 +11,8 @@ import { DatePipe } from '@angular/common';
 import { AuthInterceptor } from './auth/auth-interceptor';
 import { SharedModule } from './shared/shared.module';
 import { MaterialModule } from './shared/material.module';
+import { RECAPTCHA_V3_SITE_KEY } from 'ng-recaptcha';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent],
@@ -36,6 +38,10 @@ import { MaterialModule } from './shared/material.module';
     },
     JwtHelperService,
     { provide: MAT_DATE_LOCALE, useValue: 'de-CH' },
+    {
+      provide: RECAPTCHA_V3_SITE_KEY,
+      useValue: environment.recaptcha.siteKey,
+    },
   ],
   bootstrap: [AppComponent],
 })

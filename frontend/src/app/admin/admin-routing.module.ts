@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdminEventCategoryListComponent } from './components/admin-event-category-list/admin-event-category-list.component';
 import { AdminLocationListComponent } from './components/admin-location-list/admin-location-list.component';
 import { AdminFileCategoryListComponent } from './components/admin-file-category-list/admin-file-category-list.component';
+import { AdminNotifierListComponent } from './components/admin-notifier-list/admin-notifier-list.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,10 @@ const routes: Routes = [
       {
         path: 'file-category-list',
         component: AdminFileCategoryListComponent,
+      },
+      {
+        path: 'notifier-list',
+        component: AdminNotifierListComponent,
       },
     ],
   },

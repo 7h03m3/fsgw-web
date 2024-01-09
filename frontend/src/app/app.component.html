@@ -28,6 +28,15 @@
         <mat-icon class="icon-white">login</mat-icon>
       </button>
 
+      <button *ngIf="authService.isContentManager()" mat-icon-button matTooltip="Nachrichten"
+              routerLink="/contact-message">
+        <mat-icon [matBadgeHidden]="contactMessageService.getMessageCount() == 0"
+                  [matBadge]="contactMessageService.getMessageCount()"
+                  aria-hidden="false" matBadgeColor="warn">
+          question_answer
+        </mat-icon>
+      </button>
+
       <p *ngIf="authService.isLoggedIn() == true">
         <button [matMenuTriggerFor]="menu" mat-icon-button>
           <mat-icon>person</mat-icon>
