@@ -17,6 +17,6 @@ export class WindowService {
   }
 
   public isSmallScreen(): boolean {
-    return this.innerWidth <= 600;
+    return this.innerWidth <= 900;
   }
 }

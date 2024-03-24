@@ -21,6 +21,8 @@ export interface MenuEntry extends SubmenuEntry {
 })
 export class AppComponent {
   public title = 'FSGW';
+  @ViewChild('drawer') drawer: any;
+  private currentYearString = new Date().getFullYear().toString();
   public menuEntries: Array<MenuEntry> = [
     {
       name: 'Home',
@@ -48,11 +50,11 @@ export class AppComponent {
       routerLink: '',
       expanded: false,
       subs: [
-        { name: 'Resultate 2023', routerLink: '/public/results;year=2023' },
         {
-          name: 'Alle Resultate',
-          routerLink: '/public/results',
+          name: this.currentYearString,
+          routerLink: '/public/results;year=' + this.currentYearString,
         },
+        { name: 'Alle', routerLink: '/public/results' },
       ],
     },
     {
@@ -109,8 +111,6 @@ export class AppComponent {
       ],
     },
   ];
-
-  @ViewChild('drawer') drawer: any;
 
   constructor(
     public authService: AuthService,

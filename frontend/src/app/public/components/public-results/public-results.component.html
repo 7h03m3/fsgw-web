@@ -1,2 +1,4 @@
 <h3>Resultate {{yearString}}</h3>
-<app-file-download-list [fileList]="fileList"></app-file-download-list>
+
+<app-year-selector-standalone (yearChangeEvent)="onYearChange()" *ngIf="showYearSelector" />
+<app-file-download-list [fileList]="fileList" />

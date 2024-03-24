@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { FileApiService } from '../../../api/file-api.service';
 import { FileDto } from '../../../shared/dtos/file.dto';
 import { SortHelper } from '../../../shared/classes/sort-helper';
+import { UserSettingsService } from '../../../shared/services/user-settings.service';
 
 @Component({
   selector: 'app-public-results',
@@ -12,30 +13,47 @@ import { SortHelper } from '../../../shared/classes/sort-helper';
 export class PublicResultsComponent {
   public yearString = '';
   public fileList = new Array<FileDto>();
+  public showYearSelector = false;
 
-  constructor(private route: ActivatedRoute, private fileApi: FileApiService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private fileApi: FileApiService,
+    private userSettings: UserSettingsService
+  ) {}
 
   public ngOnInit() {
     this.route.paramMap.subscribe((data) => {
       const yearString = data.get('year');
 
-      if (yearString != null) {
-        this.yearString = yearString;
+      this.showYearSelector = yearString != null;
+      if (this.showYearSelector) {
+        this.userSettings.setCurrentYear(+yearString!);
+      }
+      this.fetch(yearString);
+    });
+  }
 
-        this.fileApi
-          .getByCategoryAndYear('RES', parseInt(yearString))
-          .subscribe((response) => {
-            this.fileList = response;
-            SortHelper.sortFilesByDate(this.fileList, false);
-          });
-      } else {
-        this.yearString = '';
+  public onYearChange() {
+    this.fetch(this.userSettings.getCurrentYear().toString());
+  }
 
-        this.fileApi.getByCategory('RES').subscribe((response) => {
+  private fetch(yearString: string | null) {
+    if (yearString != null) {
+      this.yearString = yearString;
+
+      this.fileApi
+        .getByCategoryAndYear('RES', parseInt(yearString))
+        .subscribe((response) => {
           this.fileList = response;
           SortHelper.sortFilesByDate(this.fileList, false);
         });
-      }
-    });
+    } else {
+      this.yearString = '';
+
+      this.fileApi.getByCategory('RES').subscribe((response) => {
+        this.fileList = response;
+        SortHelper.sortFilesByDate(this.fileList, false);
+      });
+    }
   }
 }
