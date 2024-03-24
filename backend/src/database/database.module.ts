@@ -21,6 +21,8 @@ import { ContactMessageEntity } from './contact-message/contact-message.entity';
 import { NotificationReceiverEntity } from './notification/notification-receiver.entity';
 import { SettingsModule } from './settings/settings.module';
 import { SettingEntity } from './settings/settings.entity';
+import { NewsModule } from './news/news.module';
+import { NewsEntity } from './news/news.entity';
 
 @Module({
   providers: [DefaultValueService],
@@ -46,6 +48,7 @@ import { SettingEntity } from './settings/settings.entity';
           ContactMessageEntity,
           NotificationReceiverEntity,
           SettingEntity,
+          NewsEntity,
         ],
         synchronize: true,
       }),
@@ -60,6 +63,7 @@ import { SettingEntity } from './settings/settings.entity';
     FilesModule,
     RegistrationsModule,
     SettingsModule,
+    NewsModule,
   ],
 })
 export class DatabaseModule {}

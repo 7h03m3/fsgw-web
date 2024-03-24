@@ -23,6 +23,8 @@ import { NotificationsController } from './notifications/notifications.controlle
 import { NotificationModule } from '../database/notification/notification.module';
 import { SettingsController } from './settings/settings.controller';
 import { SettingsModule } from '../database/settings/settings.module';
+import { NewsController } from './news/news.controller';
+import { NewsModule } from '../database/news/news.module';
 
 @Module({
   imports: [
@@ -40,6 +42,7 @@ import { SettingsModule } from '../database/settings/settings.module';
     ContactMessageModule,
     NotificationModule,
     SettingsModule,
+    NewsModule,
   ],
   controllers: [
     UserController,
@@ -52,6 +55,7 @@ import { SettingsModule } from '../database/settings/settings.module';
     ContactMessageController,
     NotificationsController,
     SettingsController,
+    NewsController,
   ],
 })
 export class ControllerModule {}

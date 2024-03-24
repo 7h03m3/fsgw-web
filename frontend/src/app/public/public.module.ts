@@ -19,6 +19,7 @@ import { PublicJsRegistrationComponent } from './components/public-js-registrati
 import { RecaptchaV3Module } from 'ng-recaptcha';
 import { CommonModule } from '@angular/common';
 import { PublicContactComponent } from './components/public-contact/public-contact.component';
+import { PublicNewsListComponent } from './components/public-news-list/public-news-list.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { PublicContactComponent } from './components/public-contact/public-conta
     PublicResultsComponent,
     PublicClubStatutesComponent,
     PublicContactComponent,
+    PublicNewsListComponent,
   ],
   imports: [
     CommonModule,

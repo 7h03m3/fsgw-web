@@ -5,6 +5,8 @@ import { ContentManagerEventListComponent } from './components/content-manager-e
 import { ContentManagerFilesComponent } from './components/content-manager-files/content-manager-files.component';
 import { ContentManagerJskRegistrationListComponent } from './components/jsk-registration-list/content-manager-jsk-registration-list.component';
 import { ContentManagerSettingsComponent } from './components/content-manager-settings/content-manager-settings.component';
+import { ContentManagerNewsListComponent } from './components/content-manager-news-list/content-manager-news-list.component';
+import { ContentManagerNewsEditComponent } from './components/content-manager-news-edit/content-manager-news-edit.component';
 
 const routes: Routes = [
   {
@@ -31,6 +33,14 @@ const routes: Routes = [
       {
         path: 'settings',
         component: ContentManagerSettingsComponent,
+      },
+      {
+        path: 'news-list',
+        component: ContentManagerNewsListComponent,
+      },
+      {
+        path: 'news-edit',
+        component: ContentManagerNewsEditComponent,
       },
     ],
   },

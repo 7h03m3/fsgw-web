@@ -12,6 +12,8 @@ import { ContentManagerJskRegistrationListComponent } from './components/jsk-reg
 import { ContentManagerJskRegistrationEditDialogComponent } from './components/jsk-registration-edit-dialog/content-manager-jsk-registration-edit-dialog.component';
 import { ContentManagerJskRegistrationInfoComponent } from './components/jsk-registration-list/components/jsk-registration-info/content-manager-jsk-registration-info.component';
 import { ContentManagerSettingsComponent } from './components/content-manager-settings/content-manager-settings.component';
+import { ContentManagerNewsEditComponent } from './components/content-manager-news-edit/content-manager-news-edit.component';
+import { ContentManagerNewsListComponent } from './components/content-manager-news-list/content-manager-news-list.component';
 
 @NgModule({
   imports: [
@@ -30,6 +32,8 @@ import { ContentManagerSettingsComponent } from './components/content-manager-se
     ContentManagerJskRegistrationEditDialogComponent,
     ContentManagerJskRegistrationInfoComponent,
     ContentManagerSettingsComponent,
+    ContentManagerNewsEditComponent,
+    ContentManagerNewsListComponent,
   ],
 })
 export class ContentManagerModule {}
